@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 type NavbarLinkProps = {
   href: string;
@@ -8,12 +9,12 @@ type NavbarLinkProps = {
 const NavbarLink = ({ href, children }: NavbarLinkProps) => {
   return (
     <li>
-      <a
-        href={href}
+      <Link
+        to={href}
         className="text-base font-normal p-4 h-full flex flex-row items-center highlight"
       >
         <span className="block leading-md">{children}</span>
-      </a>
+      </Link>
     </li>
   );
 };

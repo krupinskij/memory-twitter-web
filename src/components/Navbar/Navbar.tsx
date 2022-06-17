@@ -19,8 +19,8 @@ const Navbar = () => {
         <ul className="flex flex-row">
           <NavbarLink href="/game">Gra</NavbarLink>
           <NavbarLink href="/ranking">Ranking</NavbarLink>
-          <NavbarLink href="/rules">Zasady</NavbarLink>
           <NavbarLink href="/settings">Ustawienia</NavbarLink>
+          <NavbarLink href="/faq">FAQ</NavbarLink>
         </ul>
       </div>
       <ul className="flex flex-row">
