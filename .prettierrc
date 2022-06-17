@@ -4,6 +4,6 @@
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "es5",
-  "importOrder": ["<THIRD_PARTY_MODULES>", "^(config|model)$|^(app|pages)/?", "^[./]"],
+  "importOrder": ["<THIRD_PARTY_MODULES>", "^(model)$|^(app|assets|components|pages)/?", "^[./]"],
   "importOrderSeparation": true
 }

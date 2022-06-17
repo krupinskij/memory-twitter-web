@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 400;
+  src: url(assets/fonts/HelveticaNeueLight.ttf);
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 500;
+  src: url(assets/fonts/HelveticaNeueMedium.ttf);
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 700;
+  src: url(assets/fonts/HelveticaNeueBold.ttf);
+}
+
+@layer base {
+  html {
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  }
+}
+
+@layer components {
+  .highlight {
+    @apply relative hover:after:content-[''] hover:after:h-1 hover:after:bg-primary hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:right-0;
+  }
+
+  .checked {
+    @apply bg-primary relative border-primary;
+    @apply before:content-[''] before:absolute before:h-[20px] before:w-[20px];
+    @apply before:bg-[url($lib/assets/check.svg)] before:bg-[length:60%] before:bg-no-repeat before:bg-[position:30%_40%];
+  }
+
+  .word-break {
+    word-break: break-word;
+  }
+
+  .card {
+    transition-property: transform;
+    transition-duration: 0.5s;
+  }
+
+  .open-start {
+    transform: scaleX(0.01);
+  }
+
+  .open-end {
+    transform: scaleX(1);
+  }
+
+  .close-start {
+    transform: scaleX(0.01);
+  }
+
+  .close-end {
+    transform: scaleX(1);
+  }
+
+  .remove {
+    transform: scale(0);
+  }
+}
