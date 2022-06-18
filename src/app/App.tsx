@@ -1,5 +1,4 @@
-import { Main } from 'components/Layout';
-import Navbar from 'components/Navbar';
+import { Main, Navbar } from 'components/Layout';
 
 import AppProviders from './AppProviders';
 import AppRoutes from './AppRoutes';

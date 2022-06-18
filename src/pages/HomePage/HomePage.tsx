@@ -3,7 +3,7 @@ import Button from 'components/Button';
 
 const HomePage = () => {
   return (
-    <div className="flex flex-row gap-12 mt-48">
+    <div className="flex flex-row gap-12 mt-24">
       <img src={logo} alt="logo" className="w-96 mt-auto" />
       <div className="mt-auto mb-6">
         <h1 className="text-6xl font-bold mb-8">Witaj w Memory&nbsp;Twitter!</h1>
