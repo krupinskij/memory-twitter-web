@@ -6,8 +6,8 @@ type MainProps = {
 
 const Main: React.FC<MainProps> = ({ children }) => {
   return (
-    <main className="mt-4 mb-4">
-      <div className="mx-36">{children}</div>
+    <main className="my-4">
+      <div className="mx-[10vw]">{children}</div>
     </main>
   );
 };
