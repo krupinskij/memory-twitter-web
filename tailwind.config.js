@@ -36,6 +36,8 @@ module.exports = {
       fontSize: {
         cardSmall: '0.6vmax',
         card: '1vmax',
+        title: '4vw',
+        subtitle: '2vw',
       },
     },
   },

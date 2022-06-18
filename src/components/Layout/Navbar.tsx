@@ -1,8 +1,8 @@
 import { User } from 'model';
 
-import NavbarLink from './NavbarLink';
-import NavbarLogo from './NavbarLogo';
-import NavbarUser from './NavbarUser';
+import NavbarLink from './components/NavbarLink';
+import NavbarLogo from './components/NavbarLogo';
+import NavbarUser from './components/NavbarUser';
 
 const userMock: User = {
   id: '123',
@@ -13,7 +13,7 @@ const userMock: User = {
 
 const Navbar = () => {
   return (
-    <header className="border-gray border-b h-12 mx-32">
+    <header className="border-gray border-b h-12 px-32">
       <nav className="flex flex-row justify-between h-full">
         <div className="flex flex-row">
           <NavbarLogo />

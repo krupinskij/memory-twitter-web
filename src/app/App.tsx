@@ -1,4 +1,4 @@
-import Navbar from 'components/Navbar';
+import { Footer, Main, Navbar } from 'components/Layout';
 
 import AppProviders from './AppProviders';
 import AppRoutes from './AppRoutes';
@@ -6,7 +6,10 @@ import AppRoutes from './AppRoutes';
 const App = () => (
   <AppProviders>
     <Navbar />
-    <AppRoutes />
+    <Main>
+      <AppRoutes />
+    </Main>
+    <Footer />
   </AppProviders>
 );
 
