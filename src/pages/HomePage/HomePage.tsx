@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import logo from 'assets/images/logo.png';
 import { useAuth } from 'auth';
 import Button, { LinkButton } from 'components/Button';
+import Spacer from 'components/Layout/Spacer';
 
 const HomePage = () => {
   const { refetch: authenticate } = useQuery(QUERY.AUTHENTICATE, API.authenticate);
@@ -21,13 +22,15 @@ const HomePage = () => {
         <h1 className="text-6xl lg:text-title font-bold mb-8">Witaj w Memory Twitter!</h1>
         {user ? (
           <>
-            <h2 className="text-2xl lg:text-subtitle mb-4 clear-both">
+            <h2 className="text-2xl lg:text-subtitle mb-4">
               Kliknij poniżej by zagrać lub sprawdzić wyniki twoich followersów:
             </h2>
-            <LinkButton href="/game">Kliknij by zagrać</LinkButton>
-            <LinkButton href="/ranking" variant="outlined">
-              Sprawdź ranking
-            </LinkButton>
+            <Spacer>
+              <LinkButton href="/game">Kliknij by zagrać</LinkButton>
+              <LinkButton href="/ranking" variant="outlined">
+                Sprawdź ranking
+              </LinkButton>
+            </Spacer>
           </>
         ) : (
           <>
