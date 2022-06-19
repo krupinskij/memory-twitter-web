@@ -15,7 +15,10 @@ type AuthProviderProps = {
 };
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const { data: user } = useQuery(QUERY.CURRENT_USER, API.getCurrentUser, { retry: 1 });
+  const { data: user } = useQuery(QUERY.CURRENT_USER, API.getCurrentUser, {
+    retry: 1,
+    refetchOnMount: false,
+  });
   return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
 };
 

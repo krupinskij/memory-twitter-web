@@ -1,11 +1,18 @@
+import API, { QUERY } from 'api';
+import { useMutation, useQueryClient } from 'react-query';
+
 import { useAuth } from 'auth';
-import { User } from 'model';
 
 import NavbarLink from './components/NavbarLink';
 import NavbarLogo from './components/NavbarLogo';
 import NavbarUser from './components/NavbarUser';
 
 const Navbar = () => {
+  const queryClient = useQueryClient();
+  const { mutate: logout } = useMutation(API.logout, {
+    onSuccess: () => queryClient.setQueryData(QUERY.CURRENT_USER, () => undefined),
+  });
+
   const { user } = useAuth();
   return (
     <header className="border-gray border-b h-12 px-32">
@@ -26,7 +33,9 @@ const Navbar = () => {
         {user && (
           <ul className="flex flex-row">
             <NavbarUser user={user} />
-            <button className="px-4 h-full highlight">Wyloguj</button>
+            <button className="px-4 h-full highlight" onClick={() => logout()}>
+              Wyloguj
+            </button>
           </ul>
         )}
       </nav>
