@@ -37,7 +37,7 @@
   .checked {
     @apply bg-primary relative border-primary;
     @apply before:content-[''] before:absolute before:h-[20px] before:w-[20px];
-    @apply before:bg-[url($lib/assets/check.svg)] before:bg-[length:60%] before:bg-no-repeat before:bg-[position:30%_40%];
+    @apply before:bg-[url(assets/icons/check.svg)] before:bg-[length:60%] before:bg-no-repeat before:bg-[position:30%_40%];
   }
 
   .word-break {
