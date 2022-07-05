@@ -23,7 +23,7 @@ const logout = async () => {
   return data;
 };
 
-const getFollwings = async ({ queryKey }: QueryFunctionContext) => {
+const getFollowings = async ({ queryKey }: QueryFunctionContext) => {
   const [, level] = queryKey;
   const { data } = await axios.get(`user/followings?level=${level}`);
 
@@ -34,7 +34,7 @@ const API = {
   getCurrentUser,
   authenticate,
   logout,
-  getFollwings,
+  getFollowings,
 };
 
 export default API;
