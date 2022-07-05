@@ -44,11 +44,13 @@ const GamePage = () => {
   if (!level || !cards) return <div>Error</div>;
 
   return (
-    <Board level={level}>
-      {cards.map((card) => (
-        <BoardCard card={card} level={level} />
-      ))}
-    </Board>
+    <div className="flex flex-col items-center justify-center gap-2">
+      <Board level={level}>
+        {cards.map((card) => (
+          <BoardCard card={card} level={level} />
+        ))}
+      </Board>
+    </div>
   );
 };
 
