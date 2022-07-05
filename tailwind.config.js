@@ -15,6 +15,9 @@ module.exports = {
       shadow: '#f7f9f9',
     },
     extend: {
+      borderWidth: {
+        1: '1px',
+      },
       gridTemplateRows: {
         easy: 'repeat(4, 1fr)',
         medium: 'repeat(4, 1fr)',
