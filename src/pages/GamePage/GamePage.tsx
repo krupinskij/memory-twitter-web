@@ -46,8 +46,8 @@ const GamePage = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-2">
       <Board level={level}>
-        {cards.map((card) => (
-          <BoardCard card={card} level={level} />
+        {cards.map((card, idx) => (
+          <BoardCard key={idx} card={card} level={level} />
         ))}
       </Board>
     </div>

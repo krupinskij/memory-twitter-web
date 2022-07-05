@@ -44,27 +44,6 @@
     word-break: break-word;
   }
 
-  .card {
-    transition-property: transform;
-    transition-duration: 0.5s;
-  }
-
-  .open-start {
-    transform: scaleX(0.01);
-  }
-
-  .open-end {
-    transform: scaleX(1);
-  }
-
-  .close-start {
-    transform: scaleX(0.01);
-  }
-
-  .close-end {
-    transform: scaleX(1);
-  }
-
   .remove {
     transform: scale(0);
   }
