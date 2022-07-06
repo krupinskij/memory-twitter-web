@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 
 import API, { QUERY } from 'api';
 import BoardCard, { Board } from 'components/Card';
-import { calcDelay, randomizeIndexes } from 'helpers';
-import { Card, CardType, MapLayout, User } from 'model';
+import { Card, CardType, User } from 'model';
+import { calcDelay, randomizeIndexes } from 'utils/helpers';
 
 import { PathParams } from './model';
 

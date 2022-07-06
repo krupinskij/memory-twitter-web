@@ -15,7 +15,7 @@ const Radio = ({ checked, children, onCheck }: RadioProps) => {
     >
       <div
         className={`h-[20px] w-[20px] rounded-full border-2 ${
-          checked ? 'checked' : 'border-light-gray'
+          checked ? 'checked' : 'border-gray-light'
         }`}
       />
       <span className="text-base font-bold">{children}</span>
