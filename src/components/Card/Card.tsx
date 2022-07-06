@@ -1,5 +1,5 @@
 import { motion, useAnimation, Variants } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import logo from 'assets/images/logo_single.png';
 import { Card as CardT, CardType, Level } from 'model';
@@ -14,6 +14,7 @@ const Card = ({ card, level }: CardProps) => {
 
   const controls = useAnimation();
   const variants: Variants = {
+    hidden: { opacity: 0 },
     openstart: { scaleX: [1, 0.01], transition: { duration: 0.5 } },
     openend: { scaleX: [0.01, 1], transition: { duration: 0.5 } },
     closestart: { scaleX: [1, 0.01], transition: { duration: 0.5 } },
@@ -32,9 +33,18 @@ const Card = ({ card, level }: CardProps) => {
     }
   };
 
+  useEffect(() => {
+    controls.start(() => ({
+      opacity: [0, 1, 0.7, 1],
+      transition: { delay: card.delay },
+    }));
+  }, []);
+
   return (
     <motion.div
       layout
+      initial="hidden"
+      custom={Math.random()}
       animate={controls}
       variants={variants}
       className="

@@ -1,3 +1,5 @@
+import { MapLayout } from 'model';
+
 export const randomizeIndexes = (length: number): number[] => {
   const randomIndexesSet = new Set<number>();
   const randomIndexesArr = [];
@@ -13,4 +15,12 @@ export const randomizeIndexes = (length: number): number[] => {
   }
 
   return randomIndexesArr;
+};
+
+export const calcDelay = (idx: number, length: number): number => {
+  const [, cols] = MapLayout[length];
+  const r = Math.floor(idx / cols);
+  const c = idx - r * cols;
+
+  return (r + c) / 20;
 };

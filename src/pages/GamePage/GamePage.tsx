@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 
 import API, { QUERY } from 'api';
 import BoardCard, { Board } from 'components/Card';
-import { randomizeIndexes } from 'helpers';
-import { Card, CardType, User } from 'model';
+import { calcDelay, randomizeIndexes } from 'helpers';
+import { Card, CardType, MapLayout, User } from 'model';
 
 import { PathParams } from './model';
 
@@ -12,13 +12,16 @@ const handleSelect = (followings: User[]): Card[] => {
   const numberOfCards = 2 * followings.length;
   const randomIndexes = randomizeIndexes(numberOfCards);
 
-  return randomIndexes.map((index) => {
+  return randomIndexes.map((index, idx) => {
     const following = followings[index >> 1];
+    const delay = calcDelay(idx, numberOfCards);
+
     if (index % 2 === 0) {
       return {
         type: CardType.Picture,
         id: following.id,
         data: following.pp,
+        delay,
       };
     }
 
@@ -26,6 +29,7 @@ const handleSelect = (followings: User[]): Card[] => {
       type: CardType.Name,
       id: following.id,
       data: following.nm,
+      delay,
     };
   });
 };

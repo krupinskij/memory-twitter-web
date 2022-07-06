@@ -19,6 +19,13 @@ export const MapLevel: Record<Level, number> = {
   [Level.Legendary]: 36,
 };
 
+export const MapLayout: Record<number, [number, number]> = {
+  [16]: [4, 4],
+  [24]: [4, 6],
+  [32]: [4, 8],
+  [72]: [6, 12],
+};
+
 export enum CardType {
   Name = 'name',
   Picture = 'picture',
@@ -28,4 +35,5 @@ export type Card = {
   type: CardType;
   id: string;
   data: string;
+  delay: number;
 };
