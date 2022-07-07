@@ -13,35 +13,28 @@ type CardProps = {
 };
 
 const Card = ({ card, level }: CardProps) => {
-  const [blocked, setBlocked] = useState(false);
-
-  const { controls, animation, isHidden } = useCardAnimation();
+  const { controls, animation, isHidden, isBlocked } = useCardAnimation();
 
   const handleClick = async () => {
-    if (blocked) return;
+    if (isBlocked) return;
 
-    setBlocked(true);
     queueCard$.next(card);
     if (isHidden) {
       await animation.show();
     } else {
       await animation.hide();
     }
-
-    setBlocked(false);
   };
 
   useEffect(() => {
     animation.display(card.delay);
 
-    const hideSubscription = toHideCard$.subscribe((pair) => {
-      const [card1, card2] = pair;
+    const hideSubscription = toHideCard$.subscribe(([card1, card2]) => {
       if (areCardsEqual(card, card1) || areCardsEqual(card, card2)) {
         animation.hide();
       }
     });
-    const removeSubscription = toRemoveCard$.subscribe((pair) => {
-      const [card1, card2] = pair;
+    const removeSubscription = toRemoveCard$.subscribe(([card1, card2]) => {
       if (areCardsEqual(card, card1) || areCardsEqual(card, card2)) {
         animation.remove();
       }
@@ -61,7 +54,7 @@ const Card = ({ card, level }: CardProps) => {
       className={`
 		aspect-square m-1 p-1 rounded-lg border-1 border-gray bg-white
 		flex justify-center items-center
-		select-none ${blocked ? 'cursor-auto' : 'cursor-pointer'}
+		select-none ${isBlocked ? 'cursor-auto' : 'cursor-pointer'}
     `}
       onClick={handleClick}
     >
