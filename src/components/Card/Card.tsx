@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import useCardAnimation from 'hooks/useCardAnimation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import logo from 'assets/images/logo_single.png';
 import { Card as CardT, CardType, Level } from 'model';
@@ -10,9 +10,10 @@ import { toHideCard$, queueCard$, toRemoveCard$ } from 'utils/queues';
 type CardProps = {
   card: CardT;
   level: Level;
+  delay: number;
 };
 
-const Card = ({ card, level }: CardProps) => {
+const Card = ({ card, level, delay }: CardProps) => {
   const { controls, animation, isHidden, isBlocked } = useCardAnimation();
 
   const handleClick = async () => {
@@ -27,7 +28,7 @@ const Card = ({ card, level }: CardProps) => {
   };
 
   useEffect(() => {
-    animation.display(card.delay);
+    animation.display(delay);
 
     const hideSubscription = toHideCard$.subscribe(([card1, card2]) => {
       if (areCardsEqual(card, card1) || areCardsEqual(card, card2)) {

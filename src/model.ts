@@ -35,5 +35,4 @@ export type Card = {
   type: CardType;
   id: string;
   data: string;
-  delay: number;
 };
