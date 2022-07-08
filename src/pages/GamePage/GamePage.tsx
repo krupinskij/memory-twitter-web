@@ -1,11 +1,13 @@
 import useGame from 'hooks/useGame';
 import useTimer from 'hooks/useTimer';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 
 import API, { QUERY } from 'api';
+import Button from 'components/Button';
 import BoardCard, { Board } from 'components/Card';
+import Info, { Panel } from 'components/Info';
 import { Card, CardType, Level, MapLevel, User } from 'model';
 import { calcDelay, randomizeIndexes } from 'utils/helpers';
 
@@ -49,6 +51,8 @@ const GamePage = () => {
   const { cardCount, clickCount } = useGame(numberOfCards);
   const { elapsedTime, start, stop, timeElapsed } = useTimer('%m:%s');
 
+  const [isStarted, setIsStarted] = useState(false);
+
   useEffect(() => {
     console.log('Zostało: ' + cardCount);
 
@@ -58,19 +62,31 @@ const GamePage = () => {
     }
   }, [cardCount, clickCount, stop]);
 
+  const handleStart = () => {
+    setIsStarted(true);
+    start();
+  };
+
   if (!level || !cards) return <div>Error</div>;
 
   return (
     <div className="flex flex-col items-center justify-center gap-2">
-      <Board level={level}>
+      <Board level={level} started={isStarted}>
         {cards.map((card, idx) => (
           <BoardCard key={idx} card={card} level={level} delay={calcDelay(idx, numberOfCards)} />
         ))}
       </Board>
-      <div>
-        <button onClick={() => start()}>Start</button>
-        {elapsedTime}
-      </div>
+      {isStarted ? (
+        <Panel>
+          <Info label="Kliknięcia">{clickCount}</Info>
+          <Info label="Pozostało">{cardCount}</Info>
+          <Info label="Upłynęło">{elapsedTime}</Info>
+        </Panel>
+      ) : (
+        <Button size="large" onClick={handleStart}>
+          Graj!
+        </Button>
+      )}
     </div>
   );
 };

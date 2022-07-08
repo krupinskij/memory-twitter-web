@@ -44,7 +44,7 @@
     word-break: break-word;
   }
 
-  .remove {
-    transform: scale(0);
+  .font-arial {
+    font-family: Arial;
   }
 }
