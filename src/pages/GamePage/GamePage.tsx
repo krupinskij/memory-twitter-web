@@ -1,5 +1,6 @@
 import useGame from 'hooks/useGame';
-import { useEffect, useState } from 'react';
+import useTimer from 'hooks/useTimer';
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 
@@ -46,14 +47,16 @@ const GamePage = () => {
 
   const numberOfCards = level ? MapLevel[level || Level.Easy] * 2 : 0;
   const { cardCount, clickCount } = useGame(numberOfCards);
+  const { elapsedTime, start, stop, timeElapsed } = useTimer('%m:%s');
 
   useEffect(() => {
     console.log('Zostało: ' + cardCount);
 
     if (cardCount === 0) {
-      console.log('Wygrana', clickCount);
+      stop();
+      console.log('Wygrana', clickCount, timeElapsed());
     }
-  }, [cardCount, clickCount]);
+  }, [cardCount, clickCount, stop]);
 
   if (!level || !cards) return <div>Error</div>;
 
@@ -64,6 +67,10 @@ const GamePage = () => {
           <BoardCard key={idx} card={card} level={level} delay={calcDelay(idx, numberOfCards)} />
         ))}
       </Board>
+      <div>
+        <button onClick={() => start()}>Start</button>
+        {elapsedTime}
+      </div>
     </div>
   );
 };
