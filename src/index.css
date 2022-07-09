@@ -3,29 +3,37 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Helvetica Neue';
+  font-family: 'Twitter Chirp';
   font-style: normal;
   font-weight: 400;
-  src: url(assets/fonts/HelveticaNeueLight.ttf);
+  src: url(assets/fonts/chirp-regular-web.woff);
 }
 
 @font-face {
-  font-family: 'Helvetica Neue';
-  font-style: normal;
+  font-family: 'Twitter Chirp';
+  font-style: medium;
   font-weight: 500;
-  src: url(assets/fonts/HelveticaNeueMedium.ttf);
+  src: url(assets/fonts/chirp-medium-web.woff);
 }
 
 @font-face {
-  font-family: 'Helvetica Neue';
-  font-style: normal;
+  font-family: 'Twitter Chirp';
+  font-style: bold;
   font-weight: 700;
-  src: url(assets/fonts/HelveticaNeueBold.ttf);
+  src: url(assets/fonts/chirp-bold-web.woff);
+}
+
+@font-face {
+  font-family: 'Twitter Chirp';
+  font-style: black;
+  font-weight: 900;
+  src: url(assets/fonts/chirp-heavy-web.woff);
 }
 
 @layer base {
   html {
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-family: Twitter Chirp, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+      Arial, sans-serif;
   }
 }
 

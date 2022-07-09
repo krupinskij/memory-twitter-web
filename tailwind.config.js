@@ -6,13 +6,18 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      white: '#fff',
+      white: '#FFF',
       gray: '#e6ecf0',
       'gray-light': '#b9cad3',
       'gray-dark': '#5b5b5b',
       primary: '#1d9bf0',
       'primary-light': '#d1ebfc',
       shadow: '#f7f9f9',
+      transparent: 'transparent',
+      current: 'currentColor',
+      WHITE: '#FFF',
+      GREEN_WHITE: '#E6ECF0',
+      AZURE: '#1D9BF0',
       IRON: '#CCD6DD',
     },
     extend: {
@@ -31,6 +36,7 @@ module.exports = {
         medium: 'repeat(6, 1fr)',
         hard: 'repeat(8, 1fr)',
         legendary: 'repeat(12, 1fr)',
+        layout: '1fr 3fr 1fr',
       },
       aspectRatio: {
         easy: '4 / 4',

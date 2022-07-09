@@ -10,7 +10,7 @@ import SettingsPage from 'pages/SettingsPage';
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/" element={<GameOptionsPage />} />
       <Route path="/game" element={<GameOptionsPage />} />
       <Route path="/game/:level" element={<GamePage />} />
       <Route path="/ranking" element={<RankingPage />} />

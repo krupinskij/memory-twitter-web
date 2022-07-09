@@ -1,6 +1,6 @@
-import API, { QUERY } from 'api';
 import { useMutation, useQueryClient } from 'react-query';
 
+import API, { QUERY } from 'api';
 import { useAuth } from 'auth';
 
 import NavbarLink from './components/NavbarLink';
@@ -15,11 +15,11 @@ const Navbar = () => {
 
   const { user } = useAuth();
   return (
-    <header className="border-gray border-b h-12 px-32">
+    <header className="border-GREEN_WHITE border-b h-[48px] px-16 fixed bg-WHITE w-full">
       <nav className="flex flex-row justify-between h-full">
         <div className="flex flex-row">
           <NavbarLogo />
-          <ul className="flex flex-row">
+          {/* <ul className="flex flex-row">
             {user && (
               <>
                 <NavbarLink href="/game">Gra</NavbarLink>
@@ -28,16 +28,16 @@ const Navbar = () => {
             )}
             <NavbarLink href="/settings">Ustawienia</NavbarLink>
             <NavbarLink href="/faq">FAQ</NavbarLink>
-          </ul>
+          </ul> */}
         </div>
-        {user && (
+        {/* {user && (
           <ul className="flex flex-row">
             <NavbarUser user={user} />
             <button className="px-4 h-full highlight" onClick={() => logout()}>
               Wyloguj
             </button>
           </ul>
-        )}
+        )} */}
       </nav>
     </header>
   );
