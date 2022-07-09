@@ -9,7 +9,7 @@ const NavbarUser = ({ user }: NavbarUserProps) => {
     <a
       href={`https://twitter.com/${user.un}`}
       target="_blank"
-      className="flex flex-row items-center p-4 h-full gap-3 highlight"
+      className="flex flex-row items-center p-4 h-full gap-3 hover:bg-snow-drift"
     >
       <span className="flex justify-center items-center text-md font-normal">{user.nm}</span>
       <img

@@ -38,10 +38,6 @@
 }
 
 @layer components {
-  .highlight {
-    @apply relative hover:after:content-[''] hover:after:h-1 hover:after:bg-primary hover:after:absolute hover:after:bottom-0 hover:after:left-0 hover:after:right-0;
-  }
-
   .checked {
     @apply bg-primary relative border-primary;
     @apply before:content-[''] before:absolute before:h-[20px] before:w-[20px];
@@ -50,9 +46,5 @@
 
   .word-break {
     word-break: break-word;
-  }
-
-  .font-arial {
-    font-family: Arial;
   }
 }

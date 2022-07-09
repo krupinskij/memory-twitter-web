@@ -15,7 +15,7 @@ const RouteLink = ({ icon: Icon, activeIcon: ActiveIcon, label, href }: RouteLin
   return (
     <div className="p-1">
       <Link to={href}>
-        <div className="flex p-3 rounded-full hover:bg-GREEN_WHITE w-max font-arial">
+        <div className="flex p-3 rounded-full hover:bg-snow-drift w-max font-arial">
           {match ? <ActiveIcon className="w-6 h-6" /> : <Icon className="w-6 h-6" />}
           <div className="text-xl ml-5 mr-4">{label}</div>
         </div>

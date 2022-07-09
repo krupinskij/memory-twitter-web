@@ -15,10 +15,11 @@ module.exports = {
       shadow: '#f7f9f9',
       transparent: 'transparent',
       current: 'currentColor',
-      WHITE: '#FFF',
-      GREEN_WHITE: '#E6ECF0',
-      AZURE: '#1D9BF0',
-      IRON: '#CCD6DD',
+      'green-white': '#E6ECF0',
+      azure: '#1D9BF0',
+      iron: '#CCD6DD',
+      'snow-drift': '#F7F9F9',
+      'carbon-grey': '#5B5B5B',
     },
     extend: {
       borderWidth: {
@@ -36,7 +37,6 @@ module.exports = {
         medium: 'repeat(6, 1fr)',
         hard: 'repeat(8, 1fr)',
         legendary: 'repeat(12, 1fr)',
-        layout: '1fr 3fr 1fr',
       },
       aspectRatio: {
         easy: '4 / 4',
