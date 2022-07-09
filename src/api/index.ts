@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { QueryKey, QueryFunctionContext } from 'react-query';
 
 import { User } from 'model';
 
@@ -22,10 +23,18 @@ const logout = async () => {
   return data;
 };
 
+const getFollowings = async ({ queryKey }: QueryFunctionContext) => {
+  const [, level] = queryKey;
+  const { data } = await axios.get(`user/followings?level=${level}`);
+
+  return data;
+};
+
 const API = {
   getCurrentUser,
   authenticate,
   logout,
+  getFollowings,
 };
 
 export default API;

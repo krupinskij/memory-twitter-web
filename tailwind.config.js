@@ -13,8 +13,13 @@ module.exports = {
       primary: '#1d9bf0',
       'primary-light': '#d1ebfc',
       shadow: '#f7f9f9',
+      IRON: '#CCD6DD',
     },
     extend: {
+      borderWidth: {
+        1: '1px',
+        3: '3px',
+      },
       gridTemplateRows: {
         easy: 'repeat(4, 1fr)',
         medium: 'repeat(4, 1fr)',
@@ -34,6 +39,7 @@ module.exports = {
         legendary: '12 / 6',
       },
       fontSize: {
+        xxs: '0.625rem',
         cardSmall: '0.6vmax',
         card: '1vmax',
         title: '4vw',
