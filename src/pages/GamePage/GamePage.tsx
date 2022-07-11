@@ -1,5 +1,3 @@
-import useGame from 'hooks/useGame';
-import useTimer from 'hooks/useTimer';
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
@@ -8,6 +6,8 @@ import API, { QUERY } from 'api';
 import Button from 'components/Button';
 import BoardCard, { Board } from 'components/Card';
 import Info, { Panel } from 'components/Info';
+import useGame from 'hooks/useGame';
+import useTimer from 'hooks/useTimer';
 import { Card, CardType, Level, MapLevel, User } from 'model';
 import { calcDelay, randomizeIndexes } from 'utils/helpers';
 
@@ -76,17 +76,6 @@ const GamePage = () => {
           <BoardCard key={idx} card={card} level={level} delay={calcDelay(idx, numberOfCards)} />
         ))}
       </Board>
-      {isStarted ? (
-        <Panel>
-          <Info label="Kliknięcia">{clickCount}</Info>
-          <Info label="Pozostało">{cardCount}</Info>
-          <Info label="Upłynęło">{elapsedTime}</Info>
-        </Panel>
-      ) : (
-        <Button size="large" onClick={handleStart}>
-          Graj!
-        </Button>
-      )}
     </div>
   );
 };

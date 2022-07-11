@@ -17,8 +17,8 @@ module.exports = {
       current: 'currentColor',
       'green-white': '#E6ECF0',
       azure: '#1D9BF0',
-      iron: '#CCD6DD',
-      'snow-drift': '#F7F9F9',
+      iron: '#D0D0D0',
+      'snow-drift': '#F2F2F2',
       'carbon-grey': '#5B5B5B',
     },
     extend: {

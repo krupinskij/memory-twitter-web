@@ -13,28 +13,78 @@ import {
   BsHouseFill,
 } from 'react-icons/bs';
 
-import RouteLink from './components/RouteLink';
+import { useAuth } from 'auth';
+import useShort from 'hooks/useShort';
+
+import MenuLink from './components/MenuLink';
+import MenuUser from './components/MenuUser';
 
 const Sidebar = () => {
+  const { user } = useAuth();
+  const isShort = useShort();
+
   return (
-    <>
-      <div className="fixed top-12 my-6 left-16">
-        <RouteLink icon={BsHouse} activeIcon={BsHouseFill} label="Główna" href="/" />
-        <RouteLink icon={BsGrid3X3Gap} activeIcon={BsGrid3X3GapFill} label="Gra" href="/game" />
-        <RouteLink icon={BsTrophy} activeIcon={BsTrophyFill} label="Ranking" href="/ranking" />
-        <RouteLink icon={BsGear} activeIcon={BsGearFill} label="Ustawienia" href="/settings" />
-        <RouteLink icon={BsPalette} activeIcon={BsPaletteFill} label="Wygląd" href="/display" />
-        <RouteLink
+    <div
+      className={`fixed top-12 ${
+        isShort ? 'w-[10vw]' : 'w-[20vw]'
+      } h-[calc(100vh-3rem)] flex flex-col items-center justify-between pt-10 overflow-y-auto`}
+    >
+      <div className="">
+        <MenuLink icon={BsHouse} activeIcon={BsHouseFill} label="Główna" href="/" short={isShort} />
+        {user && (
+          <>
+            <MenuLink
+              icon={BsGrid3X3Gap}
+              activeIcon={BsGrid3X3GapFill}
+              label="Gra"
+              href="/game"
+              subhref="/game/:label"
+              short={isShort}
+            />
+            <MenuLink
+              icon={BsTrophy}
+              activeIcon={BsTrophyFill}
+              label="Ranking"
+              href="/ranking"
+              short={isShort}
+            />
+          </>
+        )}
+        <MenuLink
+          icon={BsGear}
+          activeIcon={BsGearFill}
+          label="Ustawienia"
+          href="/settings"
+          short={isShort}
+        />
+        <MenuLink
+          icon={BsPalette}
+          activeIcon={BsPaletteFill}
+          label="Wygląd"
+          href="/display"
+          short={isShort}
+        />
+        <MenuLink
           icon={BsQuestionCircle}
           activeIcon={BsQuestionCircleFill}
           label="FAQ"
           href="/faq"
+          short={isShort}
         />
       </div>
-      <div className="fixed bottom-0 text-center py-2 text-carbon-grey w-[20vw] text-xs">
+      {user && (
+        <div className="mt-auto">
+          <MenuUser user={user} short={isShort} />
+        </div>
+      )}
+      <div
+        className={`text-center py-2 text-carbon-grey mt-2 ${
+          isShort ? 'w-[10vw]' : 'w-[20vw]'
+        } text-xs`}
+      >
         Memory Twitter@2022
       </div>
-    </>
+    </div>
   );
 };
 
