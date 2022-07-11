@@ -1,6 +1,6 @@
 import { useMatch, useResolvedPath } from 'react-router';
 
-const useShort = () => {
+const useWide = () => {
   const resolvedHard = useResolvedPath('/game/hard');
   const matchHard = useMatch({ path: resolvedHard.pathname, end: true });
   const resolvedLegendary = useResolvedPath('/game/legendary');
@@ -9,4 +9,4 @@ const useShort = () => {
   return !!matchHard || !!matchLegendary;
 };
 
-export default useShort;
+export default useWide;

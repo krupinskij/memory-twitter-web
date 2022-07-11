@@ -5,9 +5,9 @@ type InfoProps = {
 
 const Info = ({ label, children }: InfoProps) => {
   return (
-    <div className="w-40">
-      <div className="text-xxs">{label}</div>
-      <div className="text-xl">{children}</div>
+    <div className="py-3 px-4">
+      <div className="text-xs text-carbon-grey">{label}</div>
+      <div className="text-base leading-5 font-bold">{children}</div>
     </div>
   );
 };

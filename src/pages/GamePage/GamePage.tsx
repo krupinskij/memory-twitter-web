@@ -76,6 +76,20 @@ const GamePage = () => {
           <BoardCard key={idx} card={card} level={level} delay={calcDelay(idx, numberOfCards)} />
         ))}
       </Board>
+      <Panel
+        title="Statystyki:"
+        action={
+          !isStarted && (
+            <Button variant="outlined" onClick={handleStart}>
+              Start
+            </Button>
+          )
+        }
+      >
+        <Info label="Kliknięcia:">{clickCount}</Info>
+        <Info label="Pozostało:">{cardCount}</Info>
+        <Info label="Upłynęło:">{elapsedTime}</Info>
+      </Panel>
     </div>
   );
 };
