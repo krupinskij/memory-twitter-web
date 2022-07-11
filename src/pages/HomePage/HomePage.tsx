@@ -1,6 +1,6 @@
-import API, { QUERY } from 'api';
 import { useQuery } from 'react-query';
 
+import API, { QUERY } from 'api';
 import logo from 'assets/images/logo.png';
 import { useAuth } from 'auth';
 import Button, { LinkButton } from 'components/Button';
@@ -16,7 +16,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="flex flex-row gap-12 mt-24">
+    <div className="flex gap-12 mt-24 mx-12">
       <img src={logo} alt="logo" className="w-[30%] self-center hidden lg:block" />
       <div className="mt-auto mb-6">
         <h1 className="text-6xl lg:text-title font-bold mb-8">Witaj w Memory Twitter!</h1>

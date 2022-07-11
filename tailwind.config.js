@@ -6,14 +6,20 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      white: '#fff',
+      white: '#FFF',
       gray: '#e6ecf0',
       'gray-light': '#b9cad3',
       'gray-dark': '#5b5b5b',
       primary: '#1d9bf0',
       'primary-light': '#d1ebfc',
       shadow: '#f7f9f9',
-      IRON: '#CCD6DD',
+      transparent: 'transparent',
+      current: 'currentColor',
+      'green-white': '#E6ECF0',
+      azure: '#1D9BF0',
+      iron: '#D0D0D0',
+      'snow-drift': '#F2F2F2',
+      'carbon-grey': '#5B5B5B',
     },
     extend: {
       borderWidth: {

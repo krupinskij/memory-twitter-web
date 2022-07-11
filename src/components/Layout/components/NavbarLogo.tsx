@@ -4,9 +4,12 @@ import logo from 'assets/images/logo.png';
 
 const NavbarLogo = () => {
   return (
-    <Link to="/" className="px-6 flex flex-row gap-2 items-center tracking-wide">
+    <Link
+      to="/"
+      className="px-4 flex flex-row gap-2 items-center tracking-wide hover:bg-snow-drift"
+    >
       <img src={logo} alt="logo" className="w-6" />
-      <span className="text-lg font-bold">Memory Twitter</span>
+      <span className="text-lg font-bold">Memory&nbsp;Twitter</span>
     </Link>
   );
 };

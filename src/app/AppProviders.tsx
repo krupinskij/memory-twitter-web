@@ -4,9 +4,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 
 import { AuthProvider } from 'auth';
+import { queryClient } from 'config';
 
 const AppProviders: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
