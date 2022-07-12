@@ -25,7 +25,7 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`fixed top-12 ${
+      className={`fixed top-12 bg-background ${
         isWide ? 'w-[10vw]' : 'w-[20vw]'
       } h-[calc(100vh-3rem)] flex flex-col items-center justify-between pt-8 overflow-y-auto`}
     >
