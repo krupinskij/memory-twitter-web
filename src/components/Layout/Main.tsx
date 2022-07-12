@@ -16,17 +16,15 @@ const Main: React.FC<MainProps> = ({ children }) => {
 
   if (matchHome) {
     return (
-      <div className="ml-[20vw] pt-20 border-l-1 border-l-green-white min-h-screen">{children}</div>
+      <div className="ml-[20vw] pt-20 border-l-1 border-l-border min-h-screen">{children}</div>
     );
   }
   if (matchHard || matchLegendary) {
     return (
-      <div className="mx-[10vw] pt-20 border-x-1 border-x-green-white min-h-screen">{children}</div>
+      <div className="mx-[10vw] pt-20 border-x-1 border-x-border min-h-screen">{children}</div>
     );
   }
-  return (
-    <div className="mx-[20vw] pt-20 border-x-1 border-x-green-white min-h-screen">{children}</div>
-  );
+  return <div className="mx-[20vw] pt-20 border-x-1 border-x-border min-h-screen">{children}</div>;
 };
 
 export default Main;

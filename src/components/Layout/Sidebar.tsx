@@ -78,7 +78,7 @@ const Sidebar = () => {
         </div>
       )}
       <div
-        className={`text-center py-2 text-carbon-grey mt-2 ${
+        className={`text-center py-2 text-textSecondary mt-2 ${
           isWide ? 'w-[10vw]' : 'w-[20vw]'
         } text-xs`}
       >

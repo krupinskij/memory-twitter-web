@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary: #1d9bf0;
+  --secondary: #d1ebfc;
+  --background: #fff;
+  --border: #e6ecf0;
+  --border-secondary: #b9cad3;
+  --shadow: #f7f9f9;
+  --shadow-secondary: #f2f2f2;
+  --shadow-tertiary: #d0d0d0;
+  --text: #000;
+  --text-secondary: #5b5b5b;
+  --text-contained: #fff;
+}
+
 @font-face {
   font-family: 'Twitter Chirp';
   font-style: normal;

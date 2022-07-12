@@ -11,7 +11,7 @@ const Button = ({ variant = 'contained', size = 'medium', children, onClick }: B
   return (
     <button
       className={`rounded-full font-bold border-2 border-primary py-2
-        ${variant} contained:bg-primary contained:text-white outlined:bg-white
+        ${variant} contained:bg-primary contained:text-textContained outlined:bg-background
         ${size}  medium:px-4 large:px-20 large:text-lg
       `}
       onClick={onClick}
