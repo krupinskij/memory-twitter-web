@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 
-import logo from 'assets/images/logo_single.png';
+import LogoSingle from 'assets/icons/logo_single.svg';
 import useCardAnimation from 'hooks/useCardAnimation';
 import { Card as CardT, CardType, Level } from 'model';
 import { areCardsEqual } from 'utils/cards';
@@ -59,9 +59,10 @@ const Card = ({ card, level, delay }: CardProps) => {
     `}
       onClick={handleClick}
     >
-      <div className="aspect-square relative flex justify-center items-center">
+      <div className="aspect-square relative flex justify-center items-center w-full h-full">
         {isHidden ? (
-          <img src={logo} alt="logo" width="200" className="rounded" />
+          //@ts-ignore
+          <LogoSingle className="rounded" />
         ) : card.type === CardType.Picture ? (
           <img
             src={`https://pbs.twimg.com/profile_images/${card.data.replace('$', '_200x200')}`}

@@ -7,8 +7,8 @@ type LinkButtonProps = {
   size?: 'medium' | 'large';
   href: string;
   children: React.ReactNode;
-  icon: IconType;
-  short: boolean;
+  short?: boolean;
+  icon?: IconType;
 };
 
 const LinkButton = ({
@@ -19,7 +19,7 @@ const LinkButton = ({
   short,
   icon: Icon,
 }: LinkButtonProps) => {
-  if (short) {
+  if (short && Icon) {
     return (
       <Link
         to={href}

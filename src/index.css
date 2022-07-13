@@ -4,7 +4,7 @@
 
 :root {
   --primary: #1d9bf0;
-  --secondary: #d1ebfc;
+  --secondary: #7bcbf3;
   --background: #fff;
   --border: #e6ecf0;
   --border-secondary: #b9cad3;
@@ -54,7 +54,7 @@
 
 [data-theme-color='blue'] {
   --primary: #1d9bf0;
-  --secondary: #d1ebfc;
+  --secondary: #7bcbf3;
 }
 
 [data-theme-color='yellow'] {
