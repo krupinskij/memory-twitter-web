@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 
 import API, { QUERY } from 'api';
-import logo from 'assets/images/logo.png';
+import Logo from 'assets/icons/logo.svg';
 import { useAuth } from 'auth';
 import Button, { LinkButton } from 'components/Button';
 import Spacer from 'components/Layout/Spacer';
@@ -17,7 +17,9 @@ const HomePage = () => {
 
   return (
     <div className="flex gap-12 mt-24 mx-12">
-      <img src={logo} alt="logo" className="w-[30%] self-center hidden lg:block" />
+      <div className="w-[30%] self-center hidden lg:block">
+        <Logo />
+      </div>
       <div className="mt-auto mb-6">
         <h1 className="text-6xl lg:text-title font-bold mb-8">Witaj w Memory Twitter!</h1>
         {user ? (

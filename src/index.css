@@ -2,6 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --primary: #1d9bf0;
+  --secondary: #7bcbf3;
+  --background: #fff;
+  --border: #e6ecf0;
+  --border-secondary: #b9cad3;
+  --shadow: #f7f9f9;
+  --shadow-secondary: #f2f2f2;
+  --shadow-tertiary: #d0d0d0;
+  --text: #000;
+  --text-secondary: #5b5b5b;
+  --text-contained: #fff;
+}
+
+[data-theme-background='light'] {
+  --background: #fff;
+  --border: #e6ecf0;
+  --border-secondary: #b9cad3;
+  --shadow: #f7f9f9;
+  --shadow-secondary: #f2f2f2;
+  --shadow-tertiary: #d0d0d0;
+  --text: #000;
+  --text-secondary: #5b5b5b;
+  --text-contained: #fff;
+}
+
+[data-theme-background='dark'] {
+  --background: #15202b;
+  --border: #2a3640;
+  --border-secondary: #5c6e7e;
+  --shadow: #2a3640;
+  --shadow-secondary: #2d3741;
+  --shadow-tertiary: #51606f;
+  --text: #fff;
+  --text-secondary: #8b98a5;
+  --text-contained: #fff;
+}
+
+[data-theme-background='darker'] {
+  --background: #000;
+  --border: #1d1f21;
+  --border-secondary: #3e4144;
+  --shadow: #16181c;
+  --shadow-secondary: #181818;
+  --shadow-tertiary: #2c2c2c;
+  --text: #fff;
+  --text-secondary: #71767b;
+  --text-contained: #fff;
+}
+
+[data-theme-color='blue'] {
+  --primary: #1d9bf0;
+  --secondary: #7bcbf3;
+}
+
+[data-theme-color='yellow'] {
+  --primary: #ffd400;
+  --secondary: #ffea80;
+}
+
+[data-theme-color='pink'] {
+  --primary: #f91880;
+  --secondary: #fc8cc0;
+}
+
+[data-theme-color='purple'] {
+  --primary: #7856ff;
+  --secondary: #bcabff;
+}
+
+[data-theme-color='orange'] {
+  --primary: #ff7a00;
+  --secondary: #ffbd80;
+}
+
+[data-theme-color='green'] {
+  --primary: #00ba7c;
+  --secondary: #80ddbe;
+}
+
 @font-face {
   font-family: 'Twitter Chirp';
   font-style: normal;
@@ -35,13 +115,25 @@
     font-family: Twitter Chirp, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
       Arial, sans-serif;
   }
+  ::-moz-selection {
+    color: white;
+    background: var(--secondary);
+  }
+
+  ::selection {
+    color: white;
+    background: var(--secondary);
+  }
+  * {
+    color: var(--text);
+  }
 }
 
 @layer components {
   .checked {
     @apply bg-primary relative border-primary;
-    @apply before:content-[''] before:absolute before:h-[20px] before:w-[20px];
-    @apply before:bg-[url(assets/icons/check.svg)] before:bg-[length:60%] before:bg-no-repeat before:bg-[position:30%_40%];
+    @apply before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-0 before:right-0;
+    @apply before:bg-[url(assets/icons/tick.svg)] before:bg-[length:60%] before:bg-no-repeat before:bg-[position:50%_50%];
   }
 
   .word-break {

@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import useCardAnimation from 'hooks/useCardAnimation';
 import { useEffect } from 'react';
 
-import logo from 'assets/images/logo_single.png';
+import LogoSingle from 'assets/icons/logo_single.svg';
+import useCardAnimation from 'hooks/useCardAnimation';
 import { Card as CardT, CardType, Level } from 'model';
 import { areCardsEqual } from 'utils/cards';
 import { toHideCard$, queueCard$, toRemoveCard$ } from 'utils/queues';
@@ -53,15 +53,16 @@ const Card = ({ card, level, delay }: CardProps) => {
       initial={{ opacity: 0 }}
       animate={controls}
       className={`
-		aspect-square m-1 p-1 rounded-lg border-1 border-gray bg-white
+		aspect-square m-1 p-1 rounded-lg border-1 border-border bg-background
 		flex justify-center items-center
 		select-none ${isBlocked ? 'cursor-auto' : 'cursor-pointer'}
     `}
       onClick={handleClick}
     >
-      <div className="aspect-square relative flex justify-center items-center">
+      <div className="aspect-square relative flex justify-center items-center w-full h-full">
         {isHidden ? (
-          <img src={logo} alt="logo" width="200" className="rounded" />
+          //@ts-ignore
+          <LogoSingle className="rounded" />
         ) : card.type === CardType.Picture ? (
           <img
             src={`https://pbs.twimg.com/profile_images/${card.data.replace('$', '_200x200')}`}

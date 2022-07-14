@@ -7,8 +7,8 @@ type LinkButtonProps = {
   size?: 'medium' | 'large';
   href: string;
   children: React.ReactNode;
-  icon: IconType;
-  short: boolean;
+  short?: boolean;
+  icon?: IconType;
 };
 
 const LinkButton = ({
@@ -19,13 +19,13 @@ const LinkButton = ({
   short,
   icon: Icon,
 }: LinkButtonProps) => {
-  if (short) {
+  if (short && Icon) {
     return (
       <Link
         to={href}
         className={`
           rounded-full font-bold border-2 border-primary py-2 flex justify-center
-          ${variant} contained:bg-primary contained:text-white outlined:bg-white
+          ${variant} contained:bg-primary contained:text-textContained outlined:bg-background
           ${size} large:p-4 large:text-lg
         `}
       >
@@ -38,7 +38,7 @@ const LinkButton = ({
       to={href}
       className={`
         rounded-full font-bold border-2 border-primary py-2
-        ${variant} contained:bg-primary contained:text-white outlined:bg-white
+        ${variant} contained:bg-primary contained:text-textContained outlined:bg-background
         ${size} medium:px-4 large:px-20 large:py-4 large:text-lg
       `}
     >

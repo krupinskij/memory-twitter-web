@@ -19,6 +19,7 @@
     "react-router-dom": "^6.3.0",
     "recoil": "^0.7.4",
     "rxjs": "^7.5.5",
+    "vite-plugin-svgr": "^2.2.0",
     "vite-tsconfig-paths": "^3.5.0"
   },
   "devDependencies": {

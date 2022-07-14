@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 
 import AuthGuard from 'auth/AuthGuard';
+import DisplayPage from 'pages/DisplayPage';
 import FAQPage from 'pages/FAQPage';
 import GameOptionsPage from 'pages/GameOptionsPage';
 import GamePage from 'pages/GamePage';
@@ -36,6 +37,7 @@ const AppRoutes: React.FC = () => {
           </AuthGuard>
         }
       />
+      <Route path="/display" element={<DisplayPage />} />
       <Route path="/settings" element={<SettingsPage />} />
       <Route path="/faq" element={<FAQPage />} />
     </Routes>
