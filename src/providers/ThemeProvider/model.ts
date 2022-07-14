@@ -21,4 +21,6 @@ export enum StorageKeys {
 export type Theme = {
   themeBackground: ThemeBackground;
   changeThemeBackground: (themeBackground: ThemeBackground) => void;
+  themeColor: ThemeColor;
+  changeThemeColor: (themeColor: ThemeColor) => void;
 };

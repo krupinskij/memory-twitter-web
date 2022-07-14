@@ -132,8 +132,8 @@
 @layer components {
   .checked {
     @apply bg-primary relative border-primary;
-    @apply before:content-[''] before:absolute before:h-[20px] before:w-[20px];
-    @apply before:bg-[url(assets/icons/check.svg)] before:bg-[length:60%] before:bg-no-repeat before:bg-[position:30%_40%];
+    @apply before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-0 before:right-0;
+    @apply before:bg-[url(assets/icons/tick.svg)] before:bg-[length:60%] before:bg-no-repeat before:bg-[position:50%_50%];
   }
 
   .word-break {

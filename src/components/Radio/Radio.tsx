@@ -15,7 +15,7 @@ const Radio = ({ value, children, onCheck }: RadioProps) => {
     <div
       className={`flex items-center gap-4 border-2 ${
         checked ? 'border-primary' : 'border-borderSecondary'
-      } rounded px-8 py-4 cursor-pointer bg-background`}
+      } rounded px-8 py-4 cursor-pointer bg-background min-w-max`}
       onClick={onCheck}
     >
       <div
