@@ -6,7 +6,7 @@
   "trailingComma": "es5",
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
-    "^(config|env|model)$|^(api|app|assets|auth|components|hooks|pages|utils)/?",
+    "^(config|env|model)$|^(api|app|assets|auth|components|hooks|pages|providers|utils)/?",
     "^[./]"
   ],
   "importOrderSeparation": true

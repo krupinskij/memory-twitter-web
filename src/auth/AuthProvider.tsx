@@ -1,7 +1,7 @@
-import API, { QUERY } from 'api';
 import React, { createContext } from 'react';
 import { useQuery } from 'react-query';
 
+import API, { QUERY } from 'api';
 import { User } from 'model';
 
 type Auth = {
