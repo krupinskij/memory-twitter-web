@@ -3,7 +3,7 @@ import { QueryKey, QueryFunctionContext } from 'react-query';
 
 import { User } from 'model';
 
-import { AuthLink } from './model';
+import { AuthLink, UserResult } from './model';
 
 const getCurrentUser = async () => {
   const { data } = await axios.get<User>('user/me');
@@ -30,11 +30,16 @@ const getFollowings = async ({ queryKey }: QueryFunctionContext) => {
   return data;
 };
 
+const saveResult = async ({ clicks, timeElapsed, level }: UserResult) => {
+  await axios.post(`result?level=${level}`, { clicks, timeElapsed });
+};
+
 const API = {
   getCurrentUser,
   authenticate,
   logout,
   getFollowings,
+  saveResult,
 };
 
 export default API;
