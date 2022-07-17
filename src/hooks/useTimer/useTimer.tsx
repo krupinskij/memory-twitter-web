@@ -5,32 +5,31 @@ import { Timer } from './Timer';
 const useTimer = (
   format: string
 ): {
-  elapsedTime: string;
+  timeFormat: string;
+  time: number;
   start: () => void;
   stop: () => void;
-  timeElapsed: () => number;
 } => {
   const timerRef = useRef(new Timer());
-  const [elapsedTime, setElapsedTime] = useState(timerRef.current.timeElapsedFormat(format));
+  const [timeFormat, setTimeFormat] = useState(timerRef.current.timeFormat(format));
 
   const start = useCallback(() => timerRef.current.start(), [timerRef]);
   const stop = useCallback(() => {
     timerRef.current.stop();
-    setElapsedTime(timerRef.current.timeElapsedFormat(format));
+    setTimeFormat(timerRef.current.timeFormat(format));
   }, [timerRef]);
-  const timeElapsed = useCallback(() => timerRef.current.timeElapsed(), [timerRef]);
 
   useEffect(() => {
     timerRef.current.addEventListener('tick', () => {
-      setElapsedTime(timerRef.current.timeElapsedFormat(format));
+      setTimeFormat(timerRef.current.timeFormat(format));
     });
   }, [format]);
 
   return {
     start,
     stop,
-    timeElapsed,
-    elapsedTime,
+    time: timerRef.current.time(),
+    timeFormat,
   };
 };
 

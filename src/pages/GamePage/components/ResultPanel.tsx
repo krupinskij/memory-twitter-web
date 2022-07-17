@@ -1,6 +1,7 @@
 import { useAuth } from 'auth';
 import Button, { LinkButton } from 'components/Button';
 import { Spacer } from 'components/Layout';
+import { Timer } from 'hooks/useTimer';
 import { Level } from 'model';
 
 type ResultViewProps = {
@@ -11,10 +12,11 @@ type ResultViewProps = {
 
 const ResultPanel = ({ clicks, time, level }: ResultViewProps) => {
   const { user } = useAuth();
+  const timer = new Timer(time);
 
   return (
     <>
-      <div className="bg-shadow flex flex-col items-center min-w-[520px] py-12 mb-4 rounded-lg">
+      <div className="bg-shadow flex flex-col items-center min-w-[520px] py-12 mb-8 rounded-lg">
         <img
           src={`https://pbs.twimg.com/profile_images/${user?.pp.replace('$', '_200x200')}`}
           alt="avatar"
@@ -22,13 +24,13 @@ const ResultPanel = ({ clicks, time, level }: ResultViewProps) => {
         />
         <p className="font-bold text-4xl mb-2">Ukończyłaś/eś grę</p>
         <p className="text-xl mb-2">
-          na poziomie <span className="font-medium">łatwym</span>
+          na poziomie <span className="font-medium">{level}</span>
         </p>
         <p className="text-2xl">
-          Wykonałaś/eś <span className="font-medium">24 kliknięcia</span>
+          Wykonałaś/eś <span className="font-medium">{clicks} kliknięcia</span>
         </p>
         <p className="text-2xl">
-          w czasie <span className="font-medium">10:34:432</span>
+          w czasie <span className="font-medium">{timer.timeFormat('%m:%s:%ms')}</span>
         </p>
       </div>
       <Spacer>

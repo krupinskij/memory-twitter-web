@@ -30,8 +30,8 @@ const getFollowings = async ({ queryKey }: QueryFunctionContext) => {
   return data;
 };
 
-const saveResult = async ({ clicks, timeElapsed, level }: UserResult) => {
-  await axios.post(`result?level=${level}`, { clicks, timeElapsed });
+const saveResult = async ({ clicks, time, level }: UserResult) => {
+  await axios.post(`result?level=${level}`, { clicks, time });
 };
 
 const API = {

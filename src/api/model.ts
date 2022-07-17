@@ -6,6 +6,6 @@ export type AuthLink = {
 
 export type UserResult = {
   clicks: number;
-  timeElapsed: number;
+  time: number;
   level: Level;
 };

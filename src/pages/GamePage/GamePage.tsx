@@ -51,10 +51,12 @@ const GamePage = () => {
 
   const numberOfCards = level ? MapLevel[level || Level.Easy] * 2 : 0;
   const { cardCount, clickCount } = useGame(numberOfCards);
-  const { elapsedTime, start, stop, timeElapsed } = useTimer('%m:%s');
+  const { time, timeFormat, start, stop } = useTimer('%m:%s');
 
   const [isStarted, setIsStarted] = useState(false);
+  const [isEnded, setIsEnded] = useState(false);
 
+  const statisticsControls = useAnimation();
   const boardControls = useAnimation();
   const resultControls = useAnimation();
 
@@ -64,7 +66,7 @@ const GamePage = () => {
     if (cardCount === 0) {
       stop();
       saveResult(
-        { clicks: clickCount, timeElapsed: timeElapsed(), level: level || Level.Easy },
+        { clicks: clickCount, time, level: level || Level.Easy },
         {
           onSuccess: () => showResult(),
         }
@@ -78,7 +80,9 @@ const GamePage = () => {
   };
 
   const showResult = async () => {
-    await boardControls.start(() => ({ scale: [1, 0], transition: { delay: 2, duration: 0.5 } }));
+    await boardControls.start(() => ({ scale: [1, 1], transition: { delay: 1 } }));
+    setIsEnded(true);
+    await boardControls.start(() => ({ scale: [1, 0], transition: { duration: 0.5 } }));
     boardControls.set({ height: 0 });
     resultControls.set({ height: 'auto' });
     await resultControls.start(() => ({ scale: [0, 1], transition: { duration: 0.5 } }));
@@ -91,9 +95,9 @@ const GamePage = () => {
       <motion.div
         animate={resultControls}
         initial={{ scale: 0, height: 0 }}
-        className="flex flex-col items-center"
+        className="flex flex-col items-center h-0"
       >
-        <ResultPanel clicks={24} time={23} level={Level.Easy} />
+        {isEnded && <ResultPanel clicks={clickCount} time={time} level={Level.Easy} />}
       </motion.div>
       <motion.div animate={boardControls} className="flex flex-col items-center">
         <Board level={level} started={isStarted}>
@@ -101,20 +105,22 @@ const GamePage = () => {
             <BoardCard key={idx} card={card} level={level} delay={calcDelay(idx, numberOfCards)} />
           ))}
         </Board>
-        <Panel
-          title="Statystyki:"
-          action={
-            !isStarted && (
-              <Button variant="outlined" onClick={handleStart}>
-                Start
-              </Button>
-            )
-          }
-        >
-          <Info label="Kliknięcia:">{clickCount}</Info>
-          <Info label="Pozostało:">{cardCount}</Info>
-          <Info label="Upłynęło:">{elapsedTime}</Info>
-        </Panel>
+        {!isEnded && (
+          <Panel
+            title="Statystyki:"
+            action={
+              !isStarted && (
+                <Button variant="outlined" onClick={handleStart}>
+                  Start
+                </Button>
+              )
+            }
+          >
+            <Info label="Kliknięcia:">{clickCount}</Info>
+            <Info label="Pozostało:">{cardCount}</Info>
+            <Info label="Upłynęło:">{timeFormat}</Info>
+          </Panel>
+        )}
       </motion.div>
     </div>
   );

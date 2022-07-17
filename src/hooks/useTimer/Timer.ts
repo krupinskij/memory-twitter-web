@@ -24,7 +24,7 @@ export class Timer extends EventTarget {
     clearInterval(this._interval);
   }
 
-  timeElapsedFormat(format: string): string {
+  timeFormat(format: string): string {
     const ms = this._elapsedTime || Date.now() - this._startTimestamp;
     const s = Math.floor(ms / 1000);
     const m = Math.floor(s / 60);
@@ -35,7 +35,7 @@ export class Timer extends EventTarget {
       .replace('%m', String(m).padStart(2, '0'));
   }
 
-  timeElapsed(): number {
+  time(): number {
     return this._elapsedTime;
   }
 }
