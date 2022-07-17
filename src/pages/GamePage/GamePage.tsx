@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 
 import API, { QUERY } from 'api';
@@ -11,6 +11,7 @@ import useTimer from 'hooks/useTimer';
 import { Card, CardType, Level, MapLevel, User } from 'model';
 import { calcDelay, randomizeIndexes } from 'utils/helpers';
 
+import ResultPanel from './components/ResultPanel';
 import { PathParams } from './model';
 
 const handleSelect = (followings: User[]): Card[] => {
@@ -53,12 +54,12 @@ const GamePage = () => {
 
   const [isStarted, setIsStarted] = useState(false);
 
-  useEffect(() => {
-    console.log('Zostało: ' + cardCount);
+  const { mutate: saveResult } = useMutation(API.saveResult);
 
+  useEffect(() => {
     if (cardCount === 0) {
       stop();
-      console.log('Wygrana', clickCount, timeElapsed());
+      saveResult({ clicks: clickCount, timeElapsed: timeElapsed(), level: level || Level.Easy });
     }
   }, [cardCount, clickCount, stop]);
 
@@ -71,25 +72,26 @@ const GamePage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center gap-2">
-      <Board level={level} started={isStarted}>
-        {cards.map((card, idx) => (
-          <BoardCard key={idx} card={card} level={level} delay={calcDelay(idx, numberOfCards)} />
-        ))}
-      </Board>
-      <Panel
-        title="Statystyki:"
-        action={
-          !isStarted && (
-            <Button variant="outlined" onClick={handleStart}>
-              Start
-            </Button>
-          )
-        }
-      >
-        <Info label="Kliknięcia:">{clickCount}</Info>
-        <Info label="Pozostało:">{cardCount}</Info>
-        <Info label="Upłynęło:">{elapsedTime}</Info>
-      </Panel>
+      <ResultPanel clicks={24} time={23} level={Level.Easy} />
+      {/* //     <Board level={level} started={isStarted}>
+  //       {cards.map((card, idx) => (
+  //         <BoardCard key={idx} card={card} level={level} delay={calcDelay(idx, numberOfCards)} />
+  //       ))}
+  //     </Board>
+  //     <Panel
+  //       title="Statystyki:"
+  //       action={
+  //         !isStarted && (
+  //           <Button variant="outlined" onClick={handleStart}>
+  //             Start
+  //           </Button>
+  //         )
+  //       }
+  //     >
+  //       <Info label="Kliknięcia:">{clickCount}</Info>
+  //       <Info label="Pozostało:">{cardCount}</Info>
+  //       <Info label="Upłynęło:">{elapsedTime}</Info>
+  //     </Panel> */}
     </div>
   );
 };
