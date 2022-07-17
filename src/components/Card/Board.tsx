@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 import useWide from 'hooks/useWide';
 import { Level } from 'model';
 

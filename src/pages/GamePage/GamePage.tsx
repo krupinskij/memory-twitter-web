@@ -1,5 +1,6 @@
+import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 
 import API, { QUERY } from 'api';
@@ -11,6 +12,7 @@ import useTimer from 'hooks/useTimer';
 import { Card, CardType, Level, MapLevel, User } from 'model';
 import { calcDelay, randomizeIndexes } from 'utils/helpers';
 
+import ResultPanel from './components/ResultPanel';
 import { PathParams } from './model';
 
 const handleSelect = (followings: User[]): Card[] => {
@@ -49,16 +51,25 @@ const GamePage = () => {
 
   const numberOfCards = level ? MapLevel[level || Level.Easy] * 2 : 0;
   const { cardCount, clickCount } = useGame(numberOfCards);
-  const { elapsedTime, start, stop, timeElapsed } = useTimer('%m:%s');
+  const { time, timeFormat, start, stop } = useTimer('%m:%s');
 
   const [isStarted, setIsStarted] = useState(false);
+  const [isEnded, setIsEnded] = useState(false);
+
+  const boardControls = useAnimation();
+  const resultControls = useAnimation();
+
+  const { mutate: saveResult } = useMutation(API.saveResult);
 
   useEffect(() => {
-    console.log('Zostało: ' + cardCount);
-
     if (cardCount === 0) {
-      stop();
-      console.log('Wygrana', clickCount, timeElapsed());
+      const time = stop();
+      saveResult(
+        { clicks: clickCount, time, level: level || Level.Easy },
+        {
+          onSuccess: () => showResult(),
+        }
+      );
     }
   }, [cardCount, clickCount, stop]);
 
@@ -67,29 +78,49 @@ const GamePage = () => {
     start();
   };
 
+  const showResult = async () => {
+    await boardControls.start(() => ({ scale: [1, 1], transition: { delay: 1 } }));
+    setIsEnded(true);
+    await boardControls.start(() => ({ scale: [1, 0], transition: { duration: 0.5 } }));
+    boardControls.set({ height: 0 });
+    resultControls.set({ height: 'auto' });
+    await resultControls.start(() => ({ scale: [0, 1], transition: { duration: 0.5 } }));
+  };
+
   if (!level || !cards) return <div>Error</div>;
 
   return (
-    <div className="flex flex-col items-center justify-center gap-2">
-      <Board level={level} started={isStarted}>
-        {cards.map((card, idx) => (
-          <BoardCard key={idx} card={card} level={level} delay={calcDelay(idx, numberOfCards)} />
-        ))}
-      </Board>
-      <Panel
-        title="Statystyki:"
-        action={
-          !isStarted && (
-            <Button variant="outlined" onClick={handleStart}>
-              Start
-            </Button>
-          )
-        }
+    <div>
+      <motion.div
+        animate={resultControls}
+        initial={{ scale: 0, height: 0 }}
+        className="flex flex-col items-center h-0"
       >
-        <Info label="Kliknięcia:">{clickCount}</Info>
-        <Info label="Pozostało:">{cardCount}</Info>
-        <Info label="Upłynęło:">{elapsedTime}</Info>
-      </Panel>
+        {isEnded && <ResultPanel clicks={clickCount} time={time} level={level} />}
+      </motion.div>
+      <motion.div animate={boardControls} className="flex flex-col items-center">
+        <Board level={level} started={isStarted}>
+          {cards.map((card, idx) => (
+            <BoardCard key={idx} card={card} level={level} delay={calcDelay(idx, numberOfCards)} />
+          ))}
+        </Board>
+        {!isEnded && (
+          <Panel
+            title="Statystyki:"
+            action={
+              !isStarted && (
+                <Button variant="outlined" onClick={handleStart}>
+                  Start
+                </Button>
+              )
+            }
+          >
+            <Info label="Kliknięcia:">{clickCount}</Info>
+            <Info label="Pozostało:">{cardCount}</Info>
+            <Info label="Upłynęło:">{timeFormat}</Info>
+          </Panel>
+        )}
+      </motion.div>
     </div>
   );
 };

@@ -18,13 +18,15 @@ export class Timer extends EventTarget {
     }, 200);
   }
 
-  stop(): void {
+  stop(): number {
     this._stopTimestamp = Date.now();
     this._elapsedTime = this._stopTimestamp - this._startTimestamp;
     clearInterval(this._interval);
+
+    return this._elapsedTime;
   }
 
-  timeElapsedFormat(format: string): string {
+  timeFormat(format: string): string {
     const ms = this._elapsedTime || Date.now() - this._startTimestamp;
     const s = Math.floor(ms / 1000);
     const m = Math.floor(s / 60);
@@ -35,7 +37,7 @@ export class Timer extends EventTarget {
       .replace('%m', String(m).padStart(2, '0'));
   }
 
-  timeElapsed(): number {
+  time(): number {
     return this._elapsedTime;
   }
 }
