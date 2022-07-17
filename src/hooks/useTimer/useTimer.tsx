@@ -8,15 +8,17 @@ const useTimer = (
   timeFormat: string;
   time: number;
   start: () => void;
-  stop: () => void;
+  stop: () => number;
 } => {
   const timerRef = useRef(new Timer());
   const [timeFormat, setTimeFormat] = useState(timerRef.current.timeFormat(format));
 
   const start = useCallback(() => timerRef.current.start(), [timerRef]);
   const stop = useCallback(() => {
-    timerRef.current.stop();
+    const time = timerRef.current.stop();
     setTimeFormat(timerRef.current.timeFormat(format));
+
+    return time;
   }, [timerRef]);
 
   useEffect(() => {

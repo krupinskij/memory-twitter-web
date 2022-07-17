@@ -56,7 +56,6 @@ const GamePage = () => {
   const [isStarted, setIsStarted] = useState(false);
   const [isEnded, setIsEnded] = useState(false);
 
-  const statisticsControls = useAnimation();
   const boardControls = useAnimation();
   const resultControls = useAnimation();
 
@@ -64,7 +63,7 @@ const GamePage = () => {
 
   useEffect(() => {
     if (cardCount === 0) {
-      stop();
+      const time = stop();
       saveResult(
         { clicks: clickCount, time, level: level || Level.Easy },
         {
@@ -97,7 +96,7 @@ const GamePage = () => {
         initial={{ scale: 0, height: 0 }}
         className="flex flex-col items-center h-0"
       >
-        {isEnded && <ResultPanel clicks={clickCount} time={time} level={Level.Easy} />}
+        {isEnded && <ResultPanel clicks={clickCount} time={time} level={level} />}
       </motion.div>
       <motion.div animate={boardControls} className="flex flex-col items-center">
         <Board level={level} started={isStarted}>

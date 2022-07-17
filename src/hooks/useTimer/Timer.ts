@@ -18,10 +18,12 @@ export class Timer extends EventTarget {
     }, 200);
   }
 
-  stop(): void {
+  stop(): number {
     this._stopTimestamp = Date.now();
     this._elapsedTime = this._stopTimestamp - this._startTimestamp;
     clearInterval(this._interval);
+
+    return this._elapsedTime;
   }
 
   timeFormat(format: string): string {
