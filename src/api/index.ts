@@ -34,12 +34,17 @@ const saveResult = async ({ clicks, time, level }: UserResult) => {
   await axios.post(`result?level=${level}`, { clicks, time });
 };
 
+const getResults = async () => {
+  await axios.get(`result?level=${'easy'}`);
+};
+
 const API = {
   getCurrentUser,
   authenticate,
   logout,
   getFollowings,
   saveResult,
+  getResults,
 };
 
 export default API;
