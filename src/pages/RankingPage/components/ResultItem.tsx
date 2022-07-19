@@ -7,30 +7,42 @@ import { format } from 'utils/date';
 
 type ResultItemProps = Omit<Result, 'id'> & {
   pos: number;
-  isNext: boolean;
+  isFirst: boolean;
+  isLast: boolean;
 };
 
-const ResultItem = ({ user, time, clicks, createdAt, pos, isNext }: ResultItemProps) => {
+const ResultItem = ({ user, time, clicks, createdAt, pos, isFirst, isLast }: ResultItemProps) => {
   const timer = new Timer(time);
   return (
     <div
       className={`
-      grid grid-cols-[72px_1fr] h-[100px] relative 
-      before:absolute before:top-0 before:bottom-0 before:left-[31px] ${
-        isNext ? 'before:w-[2px]' : 'before:w-0'
-      } before:bg-borderSecondary
+      grid grid-cols-[72px_1fr] relative 
+      before:absolute before:top-0 before:bottom-1/2 before:left-[78px] 
+      ${isFirst ? 'before:w-0' : 'before:w-[2px]'} before:bg-borderSecondary
+      after:absolute after:top-1/2 after:bottom-0 after:left-[78px] 
+      ${isLast ? 'after:w-0' : 'after:w-[2px]'} after:bg-borderSecondary
+       px-12 py-3 hover:bg-shadow
     `}
     >
-      <img
-        src={`https://pbs.twimg.com/profile_images/${user.pp.replace('$', '_bigger')}`}
-        alt={user.nm}
-        className="w-16 h-16 rounded-full border-4 border-background z-10"
-      />
+      <a href={`https://twitter.com/${user.un}`} target="_blank" className="z-10">
+        <img
+          src={`https://pbs.twimg.com/profile_images/${user.pp.replace('$', '_bigger')}`}
+          alt={user.nm}
+          className="w-16 h-16 rounded-full border-4 border-background"
+        />
+      </a>
       <div className="p-1">
-        <div className="mb-3">
-          <span className="font-semibold">{user.nm}</span>{' '}
+        <div className="mt-1 mb-3">
+          <span className="font-semibold">
+            <a href={`https://twitter.com/${user.un}`} target="_blank">
+              {user.nm}
+            </a>
+          </span>{' '}
           <span className="text-textSecondary">
-            @{user.un} · {format(createdAt)}
+            <a href={`https://twitter.com/${user.un}`} target="_blank">
+              @{user.un}
+            </a>{' '}
+            · {format(createdAt)}
           </span>
         </div>
         <div className="grid grid-cols-3 h-[30px]">

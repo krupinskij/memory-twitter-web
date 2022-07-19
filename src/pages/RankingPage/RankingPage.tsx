@@ -17,9 +17,15 @@ const RankingPage = () => {
   }
 
   return (
-    <div>
+    <div className="mx-[0vw]">
       {results.map((result, idx) => (
-        <ResultItem key={result.id} {...result} pos={idx + 1} isNext={results.length > idx + 1} />
+        <ResultItem
+          key={result.id}
+          {...result}
+          pos={idx + 1}
+          isFirst={idx === 0}
+          isLast={results.length === idx + 1}
+        />
       ))}
     </div>
   );
