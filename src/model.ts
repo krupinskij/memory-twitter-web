@@ -36,3 +36,11 @@ export type Card = {
   id: string;
   data: string;
 };
+
+export type Result = {
+  id: string;
+  user: User;
+  clicks: number;
+  time: number;
+  createdAt: number;
+};

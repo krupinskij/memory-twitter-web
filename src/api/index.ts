@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { QueryKey, QueryFunctionContext } from 'react-query';
 
-import { User } from 'model';
+import { Level, Result, User } from 'model';
 
 import { AuthLink, UserResult } from './model';
 
@@ -23,9 +23,8 @@ const logout = async () => {
   return data;
 };
 
-const getFollowings = async ({ queryKey }: QueryFunctionContext) => {
-  const [, level] = queryKey;
-  const { data } = await axios.get(`user/followings?level=${level}`);
+const getFollowings = async (level: Level) => {
+  const { data } = await axios.get<User[]>(`user/followings?level=${level}`);
 
   return data;
 };
@@ -34,8 +33,10 @@ const saveResult = async ({ clicks, time, level }: UserResult) => {
   await axios.post(`result?level=${level}`, { clicks, time });
 };
 
-const getResults = async () => {
-  await axios.get(`result?level=${'easy'}`);
+const getResults = async (level: Level) => {
+  const { data } = await axios.get<Result[]>(`result?level=${level}`);
+
+  return data;
 };
 
 const API = {

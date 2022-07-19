@@ -1,14 +1,28 @@
 import { useQuery } from 'react-query';
 
-import API from 'api';
+import API, { QUERY } from 'api';
+import { Level } from 'model';
+
+import ResultItem from './components/ResultItem';
 
 const RankingPage = () => {
-  const { data } = useQuery('dasda', API.getResults, {
+  const { data: results } = useQuery(QUERY.RESULTS, () => API.getResults(Level.Easy), {
     onSuccess(data) {
       console.log(data);
     },
   });
-  return <div>Ranking Page</div>;
+
+  if (!results) {
+    return <div>Error</div>;
+  }
+
+  return (
+    <div>
+      {results.map((result, idx) => (
+        <ResultItem key={result.id} {...result} pos={idx + 1} isNext={results.length > idx + 1} />
+      ))}
+    </div>
+  );
 };
 
 export default RankingPage;
