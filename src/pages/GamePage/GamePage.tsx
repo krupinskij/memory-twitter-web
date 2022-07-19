@@ -6,12 +6,13 @@ import { useParams } from 'react-router-dom';
 import API, { QUERY } from 'api';
 import Button from 'components/Button';
 import BoardCard, { Board } from 'components/Card';
-import Info, { Panel } from 'components/Info';
 import useGame from 'hooks/useGame';
 import useTimer from 'hooks/useTimer';
 import { Card, CardType, Level, MapLevel, User } from 'model';
 import { calcDelay, randomizeIndexes } from 'utils/helpers';
 
+import Info from './components/Info';
+import Panel from './components/Panel';
 import ResultPanel from './components/ResultPanel';
 import { PathParams } from './model';
 

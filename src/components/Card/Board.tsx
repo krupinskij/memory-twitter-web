@@ -13,7 +13,7 @@ const Board = ({ level, started, children }: BoardProps) => {
   const isWide = useWide();
   return (
     <div
-      className={`p-2 w-max ${isWide ? 'max-w-[80vw]' : 'max-w-[60vw]'} rounded bg-shadow ${
+      className={`p-2 w-max ${isWide ? 'max-w-[80vw]' : 'max-w-[50vw]'} rounded bg-shadow ${
         !started && 'pointer-events-none'
       }`}
     >

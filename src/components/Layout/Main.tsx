@@ -16,7 +16,7 @@ const Main: React.FC<MainProps> = ({ children }) => {
   if (matchHome) {
     return (
       <div className="bg-background">
-        <div className="ml-[20vw] pt-20 bg-background border-l-1 border-l-border min-h-screen">
+        <div className="ml-[25vw] pt-20 bg-background border-l-1 border-l-border min-h-screen">
           {children}
         </div>
       </div>
@@ -26,7 +26,7 @@ const Main: React.FC<MainProps> = ({ children }) => {
     <div className="bg-background">
       <div
         className={`${
-          isWide ? 'mx-[10vw]' : 'mx-[20vw]'
+          isWide ? 'mx-[10vw]' : 'mx-[25vw]'
         } pt-20 border-x-1 border-x-border min-h-screen`}
       >
         {children}
