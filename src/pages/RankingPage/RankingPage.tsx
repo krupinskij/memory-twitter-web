@@ -2,41 +2,46 @@ import { useState } from 'react';
 import { useQuery } from 'react-query';
 
 import API, { QUERY } from 'api';
-import { Level } from 'model';
+import { Level, Order, Result, Users } from 'model';
 
 import Panel from './components/Panel';
 import Radio from './components/Radio';
 import RadioGroup from './components/RadioGroup';
 import ResultItem from './components/ResultItem';
-import { Order, Users } from './model';
 
 const RankingPage = () => {
   const [level, setLevel] = useState(Level.Easy);
   const [order, setOrder] = useState(Order.Clicks);
   const [users, setUsers] = useState(Users.Together);
 
-  const { data: results } = useQuery(QUERY.RESULTS, () => API.getResults(Level.Easy), {
-    onSuccess(data) {
-      console.log(data);
-    },
-  });
-
-  if (!results) {
-    return <div>Error</div>;
-  }
+  const { data: results } = useQuery<Result[], unknown, Result[], [string, Level, Order, Users]>(
+    [QUERY.RESULTS, level, order, users],
+    ({ queryKey: [_, level, order, users] }) => API.getResults(level, order, users),
+    {
+      onSuccess(data) {
+        console.log(data);
+      },
+    }
+  );
 
   return (
     <>
       <div className="mx-[0vw]">
-        {results.map((result, idx) => (
-          <ResultItem
-            key={result.id}
-            {...result}
-            pos={idx + 1}
-            isFirst={idx === 0}
-            isLast={results.length === idx + 1}
-          />
-        ))}
+        {results ? (
+          <>
+            {results.map((result, idx) => (
+              <ResultItem
+                key={result.id}
+                {...result}
+                pos={idx + 1}
+                isFirst={idx === 0}
+                isLast={results.length === idx + 1}
+              />
+            ))}
+          </>
+        ) : (
+          <div>Error</div>
+        )}
       </div>
       <Panel title="Opcje">
         <RadioGroup title="Poziom" value={level}>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { QueryKey, QueryFunctionContext } from 'react-query';
 
-import { Level, Result, User } from 'model';
+import { Level, Order, Result, User, Users } from 'model';
 
 import { AuthLink, UserResult } from './model';
 
@@ -33,8 +33,8 @@ const saveResult = async ({ clicks, time, level }: UserResult) => {
   await axios.post(`result?level=${level}`, { clicks, time });
 };
 
-const getResults = async (level: Level) => {
-  const { data } = await axios.get<Result[]>(`result?level=${level}`);
+const getResults = async (level: Level, order: Order, users: Users) => {
+  const { data } = await axios.get<Result[]>(`result?level=${level}&order=${order}&users=${users}`);
 
   return data;
 };
