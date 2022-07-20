@@ -6,12 +6,13 @@ import { useParams } from 'react-router-dom';
 import API, { QUERY } from 'api';
 import Button from 'components/Button';
 import BoardCard, { Board } from 'components/Card';
-import Info, { Panel } from 'components/Info';
 import useGame from 'hooks/useGame';
 import useTimer from 'hooks/useTimer';
 import { Card, CardType, Level, MapLevel, User } from 'model';
 import { calcDelay, randomizeIndexes } from 'utils/helpers';
 
+import Info from './components/Info';
+import Panel from './components/Panel';
 import ResultPanel from './components/ResultPanel';
 import { PathParams } from './model';
 
@@ -39,17 +40,17 @@ const handleSelect = (followings: User[]): Card[] => {
 };
 
 const GamePage = () => {
-  const { level } = useParams<PathParams>();
+  const { level = Level.Easy } = useParams<PathParams>();
   const { data: cards } = useQuery<User[], unknown, Card[]>(
-    [QUERY.FOLLOWINGS, level],
-    API.getFollowings,
+    QUERY.FOLLOWINGS,
+    () => API.getFollowings(level),
     {
       select: handleSelect,
       refetchOnWindowFocus: false,
     }
   );
 
-  const numberOfCards = level ? MapLevel[level || Level.Easy] * 2 : 0;
+  const numberOfCards = MapLevel[level] * 2;
   const { cardCount, clickCount } = useGame(numberOfCards);
   const { time, timeFormat, start, stop } = useTimer('%m:%s');
 
@@ -65,7 +66,7 @@ const GamePage = () => {
     if (cardCount === 0) {
       const time = stop();
       saveResult(
-        { clicks: clickCount, time, level: level || Level.Easy },
+        { clicks: clickCount, time, level },
         {
           onSuccess: () => showResult(),
         }
