@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useQuery } from 'react-query';
+import { useState, useRef, useCallback, useEffect } from 'react';
+import { useInfiniteQuery } from 'react-query';
 
 import API, { QUERY } from 'api';
 import { Level, Order, Result, Users } from 'model';
@@ -14,30 +14,66 @@ const RankingPage = () => {
   const [order, setOrder] = useState(Order.Clicks);
   const [users, setUsers] = useState(Users.Together);
 
-  const { data: results } = useQuery<Result[], unknown, Result[], [string, Level, Order, Users]>(
+  const observerElem = useRef<HTMLDivElement>(null);
+
+  const {
+    data: resInifinite,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  } = useInfiniteQuery<Result[], unknown, Result[], [string, Level, Order, Users]>(
     [QUERY.RESULTS, level, order, users],
-    ({ queryKey: [_, level, order, users] }) => API.getResults(level, order, users),
+    ({ queryKey: [_, level, order, users], pageParam }) =>
+      API.getResults(level, order, users, pageParam),
     {
-      onSuccess(data) {
-        console.log(data);
+      getNextPageParam: (lastPage) => {
+        const lastItem = lastPage[lastPage.length - 1];
+        return lastPage.length !== 0 ? lastItem.id : undefined;
       },
     }
   );
 
+  const handleObserver = useCallback(
+    (entries: IntersectionObserverEntry[]) => {
+      const [target] = entries;
+
+      if (target.isIntersecting && hasNextPage) {
+        fetchNextPage();
+      }
+    },
+    [fetchNextPage, hasNextPage]
+  );
+
+  useEffect(() => {
+    const element = observerElem.current;
+    if (!element) return;
+
+    const option = { threshold: 0 };
+    const observer = new IntersectionObserver(handleObserver, option);
+    observer.observe(element);
+
+    return () => observer.unobserve(element);
+  }, [fetchNextPage, hasNextPage, handleObserver]);
+
+  const items = resInifinite?.pages.flatMap((page) => page);
+
   return (
     <>
       <div className="mx-[0vw]">
-        {results ? (
+        {items ? (
           <>
-            {results.map((result, idx) => (
+            {items.map((result, idx) => (
               <ResultItem
                 key={result.id}
                 {...result}
                 pos={idx + 1}
                 isFirst={idx === 0}
-                isLast={results.length === idx + 1}
+                isLast={items.length === idx + 1}
               />
             ))}
+            <div className="loader" ref={observerElem}>
+              {isFetchingNextPage && hasNextPage && 'Loading...'}
+            </div>
           </>
         ) : (
           <div>Error</div>

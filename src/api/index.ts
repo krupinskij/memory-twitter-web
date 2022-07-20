@@ -33,8 +33,11 @@ const saveResult = async ({ clicks, time, level }: UserResult) => {
   await axios.post(`result?level=${level}`, { clicks, time });
 };
 
-const getResults = async (level: Level, order: Order, users: Users) => {
-  const { data } = await axios.get<Result[]>(`result?level=${level}&order=${order}&users=${users}`);
+const getResults = async (level: Level, order: Order, users: Users, lastItemId?: string) => {
+  const lastItemQuery = lastItemId ? `&lastItem=${lastItemId}` : '';
+  const { data } = await axios.get<Result[]>(
+    `result?level=${level}&order=${order}&users=${users}${lastItemQuery}`
+  );
 
   return data;
 };
