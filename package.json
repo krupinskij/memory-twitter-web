@@ -13,6 +13,7 @@
     "dayjs": "^1.11.3",
     "framer-motion": "^6.4.1",
     "i18next": "^21.8.14",
+    "i18next-browser-languagedetector": "^6.1.4",
     "i18next-http-backend": "^1.4.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
