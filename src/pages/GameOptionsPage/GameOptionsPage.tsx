@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 
 import Button from 'components/Button';
@@ -9,26 +10,21 @@ const GameOptionsPage = () => {
   const [level, setLevel] = useState<Level>(Level.Easy);
   const navigate = useNavigate();
 
+  const { t } = useTranslation();
+
   return (
     <div>
-      <h1 className="text-center text-2xl font-bold">Wybierz poziom</h1>
+      <h1 className="text-center text-2xl font-bold">{t('gameoptions:title')}</h1>
       <div className="flex flex-col gap-4 items-center m-6">
         <RadioGroup value={level}>
-          <Radio value={Level.Easy} onCheck={() => setLevel(Level.Easy)}>
-            Łatwy
-          </Radio>
-          <Radio value={Level.Medium} onCheck={() => setLevel(Level.Medium)}>
-            Średni
-          </Radio>
-          <Radio value={Level.Hard} onCheck={() => setLevel(Level.Hard)}>
-            Trudny
-          </Radio>
-          <Radio value={Level.Legendary} onCheck={() => setLevel(Level.Legendary)}>
-            Legendarny
-          </Radio>
+          {Object.values(Level).map((level) => (
+            <Radio key={level} value={level} onCheck={() => setLevel(level)}>
+              {t(`gameoptions:${level}`)}
+            </Radio>
+          ))}
         </RadioGroup>
         <Button size="large" onClick={() => navigate(`/game/${level}`)}>
-          Graj!
+          {t('gameoptions:play')}
         </Button>
       </div>
     </div>

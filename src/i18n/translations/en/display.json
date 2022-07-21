@@ -1,0 +1,9 @@
+{
+  "title": "Customize your view",
+  "subtitle": "Manage your background and color. These settings affect all accounts on this browser.",
+  "background": "background",
+  "light": "Default",
+  "dark": "Dim",
+  "darker": "Lights out",
+  "color": "Color"
+}

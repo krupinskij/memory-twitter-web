@@ -50,7 +50,7 @@ export enum Order {
   Time = 'time',
 }
 
-export enum Users {
+export enum Players {
   Together = 'together',
   OnlyMe = 'onlyme',
   OnlyFollowings = 'onlyfollowings',

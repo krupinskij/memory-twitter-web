@@ -1,5 +1,4 @@
-import { BsHandIndex, BsStopwatch, BsStar, BsStarFill } from 'react-icons/bs';
-import { IoPodiumOutline } from 'react-icons/io5';
+import { BsHandIndex, BsStopwatch, BsStar } from 'react-icons/bs';
 
 import { Timer } from 'hooks/useTimer';
 import { Result } from 'model';

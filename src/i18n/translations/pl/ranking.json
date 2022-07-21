@@ -1,0 +1,15 @@
+{
+  "options": "Opcje",
+  "level": "Poziom:",
+  "easy": "Łatwy",
+  "medium": "Średni",
+  "hard": "Trudny",
+  "legendary": "Legendarny",
+  "order": "Kolejność:",
+  "clicks": "Kliknięcia",
+  "time": "Czas",
+  "players": "Gracze:",
+  "together": "Razem",
+  "onlyme": "Tylko ja",
+  "onlyfollowings": "Tylko obserwowani"
+}
