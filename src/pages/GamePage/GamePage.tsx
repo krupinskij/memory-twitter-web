@@ -1,5 +1,6 @@
 import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery } from 'react-query';
 import { useParams } from 'react-router-dom';
 
@@ -41,6 +42,8 @@ const handleSelect = (followings: User[]): Card[] => {
 
 const GamePage = () => {
   const { level = Level.Easy } = useParams<PathParams>();
+  const { t } = useTranslation();
+
   const { data: cards } = useQuery<User[], unknown, Card[]>(
     QUERY.FOLLOWINGS,
     () => API.getFollowings(level),
@@ -107,18 +110,18 @@ const GamePage = () => {
         </Board>
         {!isEnded && (
           <Panel
-            title="Statystyki:"
+            title={t('game:statistics')}
             action={
               !isStarted && (
                 <Button variant="outlined" onClick={handleStart}>
-                  Start
+                  {t('game:start')}
                 </Button>
               )
             }
           >
-            <Info label="Kliknięcia:">{clickCount}</Info>
-            <Info label="Pozostało:">{cardCount}</Info>
-            <Info label="Upłynęło:">{timeFormat}</Info>
+            <Info label={t('game:clicks')}>{clickCount}</Info>
+            <Info label={t('game:remain')}>{cardCount}</Info>
+            <Info label={t('game:time')}>{timeFormat}</Info>
           </Panel>
         )}
       </motion.div>

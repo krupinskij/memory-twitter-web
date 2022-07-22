@@ -1,8 +1,9 @@
 import { useState, useRef, useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useInfiniteQuery } from 'react-query';
 
 import API, { QUERY } from 'api';
-import { Level, Order, Result, Users } from 'model';
+import { Level, Order, Result, Players } from 'model';
 
 import Panel from './components/Panel';
 import Radio from './components/Radio';
@@ -10,9 +11,11 @@ import RadioGroup from './components/RadioGroup';
 import ResultItem from './components/ResultItem';
 
 const RankingPage = () => {
+  const { t } = useTranslation();
+
   const [level, setLevel] = useState(Level.Easy);
   const [order, setOrder] = useState(Order.Clicks);
-  const [users, setUsers] = useState(Users.Together);
+  const [players, setPlayers] = useState(Players.Together);
 
   const observerElem = useRef<HTMLDivElement>(null);
 
@@ -21,8 +24,8 @@ const RankingPage = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useInfiniteQuery<Result[], unknown, Result[], [string, Level, Order, Users]>(
-    [QUERY.RESULTS, level, order, users],
+  } = useInfiniteQuery<Result[], unknown, Result[], [string, Level, Order, Players]>(
+    [QUERY.RESULTS, level, order, players],
     ({ queryKey: [_, level, order, users], pageParam }) =>
       API.getResults(level, order, users, pageParam),
     {
@@ -79,39 +82,27 @@ const RankingPage = () => {
           <div>Error</div>
         )}
       </div>
-      <Panel title="Opcje">
-        <RadioGroup title="Poziom" value={level}>
-          <Radio value={Level.Easy} onCheck={() => setLevel(Level.Easy)}>
-            Łatwy
-          </Radio>
-          <Radio value={Level.Medium} onCheck={() => setLevel(Level.Medium)}>
-            Średni
-          </Radio>
-          <Radio value={Level.Hard} onCheck={() => setLevel(Level.Hard)}>
-            Trudny
-          </Radio>
-          <Radio value={Level.Legendary} onCheck={() => setLevel(Level.Legendary)}>
-            Legendarny
-          </Radio>
+      <Panel title={t('ranking:options')}>
+        <RadioGroup title={t('ranking:level')} value={level}>
+          {Object.values(Level).map((level) => (
+            <Radio key={level} value={level} onCheck={() => setLevel(level)}>
+              {t(`ranking:${level}`)}
+            </Radio>
+          ))}
         </RadioGroup>
-        <RadioGroup title="Kolejność" value={order}>
-          <Radio value={Order.Clicks} onCheck={() => setOrder(Order.Clicks)}>
-            Kliknięcia
-          </Radio>
-          <Radio value={Order.Time} onCheck={() => setOrder(Order.Time)}>
-            Czas
-          </Radio>
+        <RadioGroup title={t('ranking:order')} value={order}>
+          {Object.values(Order).map((order) => (
+            <Radio key={order} value={order} onCheck={() => setOrder(order)}>
+              {t(`ranking:${order}`)}
+            </Radio>
+          ))}
         </RadioGroup>
-        <RadioGroup title="Użytkownicy" value={users}>
-          <Radio value={Users.Together} onCheck={() => setUsers(Users.Together)}>
-            Razem
-          </Radio>
-          <Radio value={Users.OnlyMe} onCheck={() => setUsers(Users.OnlyMe)}>
-            Tylko ja
-          </Radio>
-          <Radio value={Users.OnlyFollowings} onCheck={() => setUsers(Users.OnlyFollowings)}>
-            Tylko obserwowani
-          </Radio>
+        <RadioGroup title={t('ranking:players')} value={players}>
+          {Object.values(Players).map((players) => (
+            <Radio key={players} value={players} onCheck={() => setPlayers(players)}>
+              {t(`ranking:${players}`)}
+            </Radio>
+          ))}
         </RadioGroup>
       </Panel>
     </>

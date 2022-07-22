@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   BsGear,
   BsGearFill,
@@ -23,6 +24,8 @@ const Sidebar = () => {
   const { user } = useAuth();
   const isWide = useWide();
 
+  const { t } = useTranslation();
+
   return (
     <div
       className={`fixed top-12 bg-background ${
@@ -30,13 +33,19 @@ const Sidebar = () => {
       } h-[calc(100vh-3rem)] flex flex-col items-center justify-between pt-8 overflow-y-auto`}
     >
       <div>
-        <MenuLink icon={BsHouse} activeIcon={BsHouseFill} label="Główna" href="/" short={isWide} />
+        <MenuLink
+          icon={BsHouse}
+          activeIcon={BsHouseFill}
+          label={t('menu:home')}
+          href="/"
+          short={isWide}
+        />
         {user && (
           <>
             <MenuLink
               icon={BsGrid3X3Gap}
               activeIcon={BsGrid3X3GapFill}
-              label="Gra"
+              label={t('menu:game')}
               href="/game"
               subhref="/game/:label"
               short={isWide}
@@ -44,7 +53,7 @@ const Sidebar = () => {
             <MenuLink
               icon={BsTrophy}
               activeIcon={BsTrophyFill}
-              label="Ranking"
+              label={t('menu:ranking')}
               href="/ranking"
               short={isWide}
             />
@@ -53,21 +62,21 @@ const Sidebar = () => {
         <MenuLink
           icon={BsGear}
           activeIcon={BsGearFill}
-          label="Ustawienia"
+          label={t('menu:settings')}
           href="/settings"
           short={isWide}
         />
         <MenuLink
           icon={BsPalette}
           activeIcon={BsPaletteFill}
-          label="Wygląd"
+          label={t('menu:display')}
           href="/display"
           short={isWide}
         />
         <MenuLink
           icon={BsQuestionCircle}
           activeIcon={BsQuestionCircleFill}
-          label="FAQ"
+          label={t('menu:faq')}
           href="/faq"
           short={isWide}
         />

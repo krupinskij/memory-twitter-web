@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useQuery } from 'react-query';
 
 import API, { QUERY } from 'api';
@@ -9,6 +10,7 @@ import Spacer from 'components/Layout/Spacer';
 const HomePage = () => {
   const { refetch: authenticate } = useQuery(QUERY.AUTHENTICATE, API.authenticate);
   const { user } = useAuth();
+  const { t } = useTranslation();
 
   const handleAuthenticate = async () => {
     const { data } = await authenticate();
@@ -21,25 +23,21 @@ const HomePage = () => {
         <Logo />
       </div>
       <div className="mt-auto mb-6">
-        <h1 className="text-6xl lg:text-title font-bold mb-8">Witaj w Memory Twitter!</h1>
+        <h1 className="text-6xl lg:text-title font-bold mb-8">{t('homepage:greetings')}</h1>
         {user ? (
           <>
-            <h2 className="text-2xl lg:text-subtitle mb-4">
-              Kliknij poniżej by zagrać lub sprawdzić wyniki twoich followersów:
-            </h2>
+            <h2 className="text-2xl lg:text-subtitle mb-4">{t('homepage:logged.message')}</h2>
             <Spacer>
-              <LinkButton href="/game">Kliknij by zagrać</LinkButton>
+              <LinkButton href="/game">{t('homepage:play')}</LinkButton>
               <LinkButton href="/ranking" variant="outlined">
-                Sprawdź ranking
+                {t('homepage:ranking')}
               </LinkButton>
             </Spacer>
           </>
         ) : (
           <>
-            <h2 className="text-2xl lg:text-subtitle mb-4">
-              Wygląda na to, że nie jesteś jeszcze zalogowany
-            </h2>
-            <Button onClick={handleAuthenticate}>Zaloguj się używając Twittera</Button>
+            <h2 className="text-2xl lg:text-subtitle mb-4">{t('homepage:unlogged.message')}</h2>
+            <Button onClick={handleAuthenticate}>{t('homepage:login')}</Button>
           </>
         )}
       </div>

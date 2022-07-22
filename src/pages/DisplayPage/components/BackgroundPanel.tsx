@@ -1,37 +1,25 @@
+import { useTranslation } from 'react-i18next';
+
 import Radio, { RadioGroup } from 'components/Radio';
 import { ThemeBackground, useTheme } from 'providers/ThemeProvider';
 
 const BackgroundPanel = () => {
   const { themeBackground, changeThemeBackground } = useTheme();
+  const { t } = useTranslation();
+
   return (
     <div className="mb-4">
-      <label className="text-sm text-textSecondary font-bold mb-1 block">Tło</label>
+      <label className="text-sm text-textSecondary font-bold mb-1 block">
+        {t('display:background')}
+      </label>
       <RadioGroup value={themeBackground}>
-        <div data-theme-background={ThemeBackground.Light}>
-          <Radio
-            value={ThemeBackground.Light}
-            onCheck={() => changeThemeBackground(ThemeBackground.Light)}
-          >
-            Domyślnie
-          </Radio>
-        </div>
-        <div data-theme-background={ThemeBackground.Dark}>
-          <Radio
-            value={ThemeBackground.Dark}
-            onCheck={() => changeThemeBackground(ThemeBackground.Dark)}
-          >
-            Zmierzch
-          </Radio>
-        </div>
-
-        <div data-theme-background={ThemeBackground.Darker}>
-          <Radio
-            value={ThemeBackground.Darker}
-            onCheck={() => changeThemeBackground(ThemeBackground.Darker)}
-          >
-            Noc
-          </Radio>
-        </div>
+        {Object.values(ThemeBackground).map((background) => (
+          <div data-theme-background={background} key={background}>
+            <Radio value={background} onCheck={() => changeThemeBackground(background)}>
+              {t(`display:${background}`)}
+            </Radio>
+          </div>
+        ))}
       </RadioGroup>
     </div>
   );

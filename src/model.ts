@@ -50,8 +50,14 @@ export enum Order {
   Time = 'time',
 }
 
-export enum Users {
+export enum Players {
   Together = 'together',
   OnlyMe = 'onlyme',
   OnlyFollowings = 'onlyfollowings',
+}
+
+export enum StorageKey {
+  ThemeBackground = 'theme-background',
+  ThemeColor = 'theme-color',
+  Language = 'lng',
 }
