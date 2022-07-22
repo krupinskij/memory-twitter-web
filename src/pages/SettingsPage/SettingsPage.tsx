@@ -13,9 +13,7 @@ const SettingsPage = () => {
 
   const { t } = useTranslation();
 
-  const handleLanguageSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const language = event.target.value;
-
+  const handleLanguageSelect = (language: string) => {
     localStorage.setItem(StorageKey.Language, language);
     setLanguage(language);
     i18next.changeLanguage();
@@ -25,13 +23,16 @@ const SettingsPage = () => {
     <div>
       Settings Page
       <div>
-        <Select value={language} onChange={handleLanguageSelect}>
+        <Select label={t('settings:language')} value={language}>
           {languages.map((lng) => {
-            const content =
-              lng === language
-                ? t(`language:${lng}`)
-                : `${t(`language:${lng}`)} - ${t(`language:${lng}`, { lng })}`;
-            return <Option value={lng}>{content}</Option>;
+            const tLang = t(`language:${lng}`);
+            const oLang = t(`language:${lng}`, { lng });
+            const content = tLang === oLang ? tLang : `${tLang} - ${oLang}`;
+            return (
+              <Option key={lng} value={lng} onSelect={() => handleLanguageSelect(lng)}>
+                {content}
+              </Option>
+            );
           })}
         </Select>
       </div>
