@@ -1,0 +1,5 @@
+{
+  "default": "default ({{ language }})",
+  "pl": "Polish",
+  "en": "English"
+}

@@ -1,6 +1,8 @@
 import React, { createContext, useCallback, useLayoutEffect, useState } from 'react';
 
-import { StorageKeys, Theme, ThemeBackground, ThemeColor } from './model';
+import { StorageKey } from 'model';
+
+import { Theme, ThemeBackground, ThemeColor } from './model';
 
 export const ThemeContext = createContext<Theme | null>(null);
 
@@ -14,14 +16,14 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
   useLayoutEffect(() => {
     const themeBackground =
-      (localStorage.getItem(StorageKeys.ThemeBackground) as ThemeBackground) ||
+      (localStorage.getItem(StorageKey.ThemeBackground) as ThemeBackground) ||
       ThemeBackground.Light;
 
     setThemeBackground(themeBackground);
     document.body.dataset.themeBackground = themeBackground;
 
     const themeColor =
-      (localStorage.getItem(StorageKeys.ThemeColor) as ThemeColor) || ThemeColor.Blue;
+      (localStorage.getItem(StorageKey.ThemeColor) as ThemeColor) || ThemeColor.Blue;
 
     setThemeColor(themeColor);
     document.body.dataset.themeColor = themeColor;
@@ -30,13 +32,13 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const changeThemeBackground = useCallback((themeBackground: ThemeBackground) => {
     setThemeBackground(themeBackground);
     document.body.dataset.themeBackground = themeBackground;
-    localStorage.setItem(StorageKeys.ThemeBackground, themeBackground);
+    localStorage.setItem(StorageKey.ThemeBackground, themeBackground);
   }, []);
 
   const changeThemeColor = useCallback((themeColor: ThemeColor) => {
     setThemeColor(themeColor);
     document.body.dataset.themeColor = themeColor;
-    localStorage.setItem(StorageKeys.ThemeColor, themeColor);
+    localStorage.setItem(StorageKey.ThemeColor, themeColor);
   }, []);
 
   return (

@@ -1,0 +1,5 @@
+{
+  "default": "domyślny ({{ lng }})",
+  "pl": "polski",
+  "en": "angielski"
+}

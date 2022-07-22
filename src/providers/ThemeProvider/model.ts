@@ -13,11 +13,6 @@ export enum ThemeColor {
   Green = 'green',
 }
 
-export enum StorageKeys {
-  ThemeBackground = 'theme-background',
-  ThemeColor = 'theme-color',
-}
-
 export type Theme = {
   themeBackground: ThemeBackground;
   changeThemeBackground: (themeBackground: ThemeBackground) => void;

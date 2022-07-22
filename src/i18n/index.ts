@@ -11,14 +11,15 @@ i18next
   .init({
     fallbackLng: 'en',
     load: 'languageOnly',
-    ns: ['display', 'game', 'gameoptions', 'homepage', 'menu', 'ranking'],
+    ns: ['display', 'game', 'gameoptions', 'homepage', 'language', 'menu', 'ranking'],
     debug: true,
     backend: {
       loadPath: 'src/i18n/translations/{{lng}}/{{ns}}.json',
       crossDomain: true,
     },
     detection: {
-      order: ['navigator'],
+      lookupLocalStorage: 'lng',
+      order: ['localStorage', 'navigator'],
     },
   });
 
