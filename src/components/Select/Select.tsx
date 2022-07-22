@@ -41,7 +41,7 @@ const Select = ({ label, value, children }: SelectProps) => {
     <div
       tabIndex={0}
       ref={selectRef}
-      className="border-1 w-full border-borderSecondary rounded relative focus:rounded-b-none"
+      className="border-1 w-full border-borderSecondary focus:border-primary rounded relative focus:rounded-b-none cursor-pointer"
       onClick={handleExpand}
       onBlur={handleBlur}
     >
@@ -49,10 +49,12 @@ const Select = ({ label, value, children }: SelectProps) => {
       <div className="text-lg pointer-events-none">{selectedChild}</div>
       <BsCaretDownFill
         className={`
-        absolute right-4 top-1/2 -translate-y-1/2 h-4 w-auto fill-borderSecondary`}
+        absolute right-4 top-1/2 -translate-y-1/2 h-4 w-auto 
+        ${expanded ? 'fill-primary' : 'fill-borderSecondary'}
+      `}
       />
       {expanded && (
-        <div className="absolute top-full w-full max-h-[300px] overflow-y-auto rounded rounded-t-none shadow-lg bg-background">
+        <div className="absolute top-full mt-1 w-full max-h-[300px] overflow-y-auto rounded rounded-t-none shadow-xl bg-background">
           {optionsChildren}
         </div>
       )}

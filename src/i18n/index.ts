@@ -11,7 +11,7 @@ i18next
   .init({
     fallbackLng: 'en',
     load: 'languageOnly',
-    ns: ['display', 'game', 'gameoptions', 'homepage', 'language', 'menu', 'ranking'],
+    ns: ['display', 'game', 'gameoptions', 'homepage', 'language', 'menu', 'ranking', 'settings'],
     debug: true,
     backend: {
       loadPath: 'src/i18n/translations/{{lng}}/{{ns}}.json',
@@ -24,3 +24,4 @@ i18next
   });
 
 export default i18next;
+export const languages = ['pl', 'en'];

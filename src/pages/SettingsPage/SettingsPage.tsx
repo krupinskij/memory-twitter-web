@@ -1,43 +1,19 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Select, { Option } from 'components/Select';
-import { languages } from 'i18n/languages';
-import i18next from 'i18next';
-import { StorageKey } from 'model';
+import LanguagePanel from './components/LanguagePanel';
 
-const SettingsPage = () => {
-  const [language, setLanguage] = useState(
-    () => localStorage.getItem(StorageKey.Language) || 'default'
-  );
-
+const DisplayPage = () => {
   const { t } = useTranslation();
 
-  const handleLanguageSelect = (language: string) => {
-    localStorage.setItem(StorageKey.Language, language);
-    setLanguage(language);
-    i18next.changeLanguage();
-  };
-
   return (
-    <div>
-      Settings Page
-      <div>
-        <Select label={t('settings:language')} value={language}>
-          {languages.map((lng) => {
-            const tLang = t(`language:${lng}`);
-            const oLang = t(`language:${lng}`, { lng });
-            const content = tLang === oLang ? tLang : `${tLang} - ${oLang}`;
-            return (
-              <Option key={lng} value={lng} onSelect={() => handleLanguageSelect(lng)}>
-                {content}
-              </Option>
-            );
-          })}
-        </Select>
+    <div className="mx-16">
+      <h1 className="text-center text-2xl font-bold mb-3">{t('settings:title')}</h1>
+      <p className="text-center text-textSecondary mb-12 mx-4">{t('settings:subtitle')}</p>
+      <div className="mx-2">
+        <LanguagePanel />
       </div>
     </div>
   );
 };
 
-export default SettingsPage;
+export default DisplayPage;

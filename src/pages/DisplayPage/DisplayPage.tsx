@@ -9,10 +9,10 @@ const DisplayPage = () => {
   return (
     <div className="mx-16">
       <h1 className="text-center text-2xl font-bold mb-3">{t('display:title')}</h1>
-      <p className="text-center text-textSecondary mb-5 mx-4">{t('display:subtitle')}</p>
-      <div className="mx-16">
-        <BackgroundPanel />
+      <p className="text-center text-textSecondary mb-12 mx-4">{t('display:subtitle')}</p>
+      <div className="mx-2">
         <ColorPanel />
+        <BackgroundPanel />
       </div>
     </div>
   );
