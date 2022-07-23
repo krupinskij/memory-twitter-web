@@ -3,11 +3,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="840" height="840" viewBox="0 0 840 840" xml:space="preserve">
 <style type="text/css">
 	.bbg {
-		fill: var(--primary, #1d9bf0);
+		fill: rgb(var(--primary, 30 156 241));
 	}
 
 	.sbg {
-		fill: var(--secondary, #7bcbf3);
+		fill: rgb(var(--secondary, 123 203 243));
 	}
 </style>
 <rect class="bbg" width="420" height="420" rx="75"/>

@@ -20,8 +20,11 @@ const LanguagePanel = () => {
   };
 
   return (
-    <div className="mb-4">
-      <Select label={t('settings:language')} value={language}>
+    <div className="mb-8">
+      <label className="text-sm text-textSecondary font-bold mb-1 block">
+        {t('settings:language')}
+      </label>
+      <Select value={language}>
         {languages.map((lng) => {
           const tLang = t(`language:${lng}`);
           const oLang = t(`language:${lng}`, { lng });

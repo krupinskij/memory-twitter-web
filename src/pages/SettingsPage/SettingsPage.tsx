@@ -1,8 +1,10 @@
 import { useTranslation } from 'react-i18next';
 
+import AnimationSpeedPanel from './components/AnimationSpeedPanel';
 import LanguagePanel from './components/LanguagePanel';
+import StatisticsPanel from './components/StatisticsPanel';
 
-const DisplayPage = () => {
+const SettingsPage = () => {
   const { t } = useTranslation();
 
   return (
@@ -11,9 +13,11 @@ const DisplayPage = () => {
       <p className="text-center text-textSecondary mb-12 mx-4">{t('settings:subtitle')}</p>
       <div className="mx-2">
         <LanguagePanel />
+        <AnimationSpeedPanel />
+        <StatisticsPanel />
       </div>
     </div>
   );
 };
 
-export default DisplayPage;
+export default SettingsPage;

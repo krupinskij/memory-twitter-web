@@ -1,6 +1,8 @@
 import { useAnimation, AnimationControls } from 'framer-motion';
 import { useCallback, useMemo, useState } from 'react';
 
+import { useSettings } from 'providers/SettingsProvider';
+
 import { Animation } from './model';
 
 const useCardAnimation = (): {
@@ -13,12 +15,16 @@ const useCardAnimation = (): {
   const [isBlocked, setIsBlocked] = useState(true);
   const controls = useAnimation();
 
+  const { animationSpeed } = useSettings();
+
+  const duration = animationSpeed * 0.5;
+
   const show = useCallback(
     async (delay: number = 0) => {
       setIsBlocked(true);
-      await controls.start(() => ({ scaleX: [1, 0], transition: { delay, duration: 0.5 } }));
+      await controls.start(() => ({ scaleX: [1, 0], transition: { delay, duration } }));
       setIsHidden(false);
-      await controls.start(() => ({ scaleX: [0, 1], transition: { delay, duration: 0.5 } }));
+      await controls.start(() => ({ scaleX: [0, 1], transition: { delay, duration } }));
       setIsBlocked(false);
     },
     [controls]
@@ -27,9 +33,9 @@ const useCardAnimation = (): {
   const hide = useCallback(
     async (delay: number = 0) => {
       setIsBlocked(true);
-      await controls.start(() => ({ scaleX: [1, 0], transition: { delay, duration: 0.5 } }));
+      await controls.start(() => ({ scaleX: [1, 0], transition: { delay, duration } }));
       setIsHidden(true);
-      await controls.start(() => ({ scaleX: [0, 1], transition: { delay, duration: 0.5 } }));
+      await controls.start(() => ({ scaleX: [0, 1], transition: { delay, duration } }));
       setIsBlocked(false);
     },
     [controls]
@@ -49,7 +55,7 @@ const useCardAnimation = (): {
   const remove = useCallback(
     async (delay: number = 0) => {
       setIsBlocked(true);
-      await controls.start(() => ({ scale: [1, 0], transition: { delay, duration: 0.5 } }));
+      await controls.start(() => ({ scale: [1, 0], transition: { delay, duration } }));
     },
     [controls]
   );

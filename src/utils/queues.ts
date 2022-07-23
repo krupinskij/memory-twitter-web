@@ -24,5 +24,5 @@ const [correctPair$, incorrectPair$] = partition(
 );
 
 export { correctPair$ };
-export const toRemoveCard$ = correctPair$.pipe(delay(2000));
-export const toHideCard$ = incorrectPair$.pipe(delay(2000));
+export const toRemoveCard$ = correctPair$.pipe(delay(2500));
+export const toHideCard$ = incorrectPair$.pipe(delay(2500));
