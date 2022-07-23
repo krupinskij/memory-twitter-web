@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import API, { QUERY } from 'api';
 import Button from 'components/Button';
 import BoardCard, { Board } from 'components/Card';
+import { Spinner } from 'components/Loading';
 import useGame from 'hooks/useGame';
 import useTimer from 'hooks/useTimer';
 import { Card, CardType, Level, MapLevel, User } from 'model';
@@ -96,7 +97,7 @@ const GamePage = () => {
     await resultControls.start(() => ({ scale: [0, 1], transition: { duration: 0.5 } }));
   };
 
-  if (!level || !cards) return <div>Error</div>;
+  if (!level || !cards) return <Spinner />;
 
   const showStatistics = showClicks || showRemain || showTime;
 
