@@ -60,4 +60,5 @@ export enum StorageKey {
   ThemeBackground = 'theme-background',
   ThemeColor = 'theme-color',
   Language = 'lng',
+  AnimationSpeed = 'animation-speed',
 }

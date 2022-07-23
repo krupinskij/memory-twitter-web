@@ -7,7 +7,12 @@ type DotProps<T extends RangeValue> = {
   onSelect: (value: T) => void;
 };
 
-function Dot<T extends RangeValue>({ label, value, selected, onSelect }: DotProps<T>) {
+const Dot: <T extends RangeValue>(props: DotProps<T>) => React.ReactElement = ({
+  label,
+  value,
+  selected,
+  onSelect,
+}) => {
   return (
     <div className="relative cursor-pointer">
       <div
@@ -24,6 +29,6 @@ function Dot<T extends RangeValue>({ label, value, selected, onSelect }: DotProp
       />
     </div>
   );
-}
+};
 
 export default Dot;
