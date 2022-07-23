@@ -61,4 +61,7 @@ export enum StorageKey {
   ThemeColor = 'theme-color',
   Language = 'lng',
   AnimationSpeed = 'animation-speed',
+  StatisticsClicks = 'statistics-clicks',
+  StatisticsRemain = 'statistics-remain',
+  StatisticsTime = 'statistics-time',
 }
