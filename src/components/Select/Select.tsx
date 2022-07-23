@@ -54,7 +54,7 @@ const Select = ({ label, value, children }: SelectProps) => {
       `}
       />
       {expanded && (
-        <div className="absolute top-full mt-1 w-full max-h-[300px] overflow-y-auto rounded rounded-t-none shadow-xl bg-background">
+        <div className="absolute top-full mt-1 w-full max-h-[300px] overflow-y-auto rounded rounded-t-none shadow-xl bg-background z-50">
           {optionsChildren}
         </div>
       )}
