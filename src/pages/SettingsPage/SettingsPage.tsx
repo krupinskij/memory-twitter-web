@@ -1,19 +1,11 @@
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
-import Checkbox, { CheckboxGroup } from 'components/Checkbox';
-import { useSettings } from 'providers/SettingsProvider';
 
 import AnimationSpeedPanel from './components/AnimationSpeedPanel';
 import LanguagePanel from './components/LanguagePanel';
+import StatisticsPanel from './components/StatisticsPanel';
 
 const SettingsPage = () => {
   const { t } = useTranslation();
-
-  const [checked1, setChecked1] = useState(false);
-  const [checked2, setChecked2] = useState(false);
-
-  const { statistics, toggleStatisticsOption } = useSettings();
 
   return (
     <div className="mx-16">
@@ -22,23 +14,7 @@ const SettingsPage = () => {
       <div className="mx-2">
         <LanguagePanel />
         <AnimationSpeedPanel />
-        <CheckboxGroup>
-          <Checkbox
-            checked={statistics.showClicks}
-            onCheck={() => toggleStatisticsOption('clicks')}
-          >
-            Clicks
-          </Checkbox>
-          <Checkbox
-            checked={statistics.showRemain}
-            onCheck={() => toggleStatisticsOption('remain')}
-          >
-            Remain
-          </Checkbox>
-          <Checkbox checked={statistics.showTime} onCheck={() => toggleStatisticsOption('time')}>
-            Time
-          </Checkbox>
-        </CheckboxGroup>
+        <StatisticsPanel />
       </div>
     </div>
   );

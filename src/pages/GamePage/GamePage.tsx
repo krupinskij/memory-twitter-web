@@ -10,6 +10,7 @@ import BoardCard, { Board } from 'components/Card';
 import useGame from 'hooks/useGame';
 import useTimer from 'hooks/useTimer';
 import { Card, CardType, Level, MapLevel, User } from 'model';
+import { useSettings } from 'providers/SettingsProvider';
 import { calcDelay, randomizeIndexes } from 'utils/helpers';
 
 import Info from './components/Info';
@@ -65,6 +66,10 @@ const GamePage = () => {
 
   const { mutate: saveResult } = useMutation(API.saveResult);
 
+  const {
+    statistics: { showClicks, showRemain, showTime },
+  } = useSettings();
+
   useEffect(() => {
     if (cardCount === 0) {
       const time = stop();
@@ -93,6 +98,8 @@ const GamePage = () => {
 
   if (!level || !cards) return <div>Error</div>;
 
+  const showStatistics = showClicks || showRemain || showTime;
+
   return (
     <div>
       <motion.div
@@ -110,6 +117,7 @@ const GamePage = () => {
         </Board>
         {!isEnded && (
           <Panel
+            visible={showStatistics}
             title={t('game:statistics')}
             action={
               !isStarted && (
@@ -119,9 +127,9 @@ const GamePage = () => {
               )
             }
           >
-            <Info label={t('game:clicks')}>{clickCount}</Info>
-            <Info label={t('game:remain')}>{cardCount}</Info>
-            <Info label={t('game:time')}>{timeFormat}</Info>
+            {showClicks && <Info label={t('game:clicks')}>{clickCount}</Info>}
+            {showRemain && <Info label={t('game:remain')}>{cardCount}</Info>}
+            {showTime && <Info label={t('game:time')}>{timeFormat}</Info>}
           </Panel>
         )}
       </motion.div>

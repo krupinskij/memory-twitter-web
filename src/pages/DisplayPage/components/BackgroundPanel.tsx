@@ -8,7 +8,7 @@ const BackgroundPanel = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="mb-4">
+    <div className="mb-8">
       <label className="text-sm text-textSecondary font-bold mb-1 block">
         {t('display:background')}
       </label>
