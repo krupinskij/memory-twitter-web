@@ -37,7 +37,7 @@ const Select = ({ value, children }: SelectProps) => {
   };
 
   return (
-    <div className="p-4 bg-shadow w-full rounded-2xl relative">
+    <div className="p-4 bg-shadow w-full rounded-2xl">
       <div
         tabIndex={0}
         ref={selectRef}
