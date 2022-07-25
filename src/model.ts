@@ -65,3 +65,10 @@ export enum StorageKey {
   StatisticsRemain = 'statistics-remain',
   StatisticsTime = 'statistics-time',
 }
+
+export type HttpResponse = {
+  message: string;
+  httpStatus: number;
+  logout: boolean;
+  verbose: boolean;
+};
