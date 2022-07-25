@@ -13,16 +13,31 @@ axios.defaults.baseURL = `${env.URL}/api`;
 axios.defaults.withCredentials = true;
 
 axios.interceptors.response.use(
-  (value) => value,
+  (value) => {
+    if (value.data.data) {
+      value.data = value.data.data;
+    }
+
+    if (value.data.message) {
+      const notification = {
+        id: nanoid(),
+        message: value.data.message,
+      };
+
+      notification$.next(notification);
+    }
+
+    return value;
+  },
   async (error: any) => {
     const data = error.response?.data as HttpResponse;
 
-    const notification = {
-      id: nanoid(),
-      message: data.message,
-    };
-
     if (data.verbose) {
+      const notification = {
+        id: nanoid(),
+        message: data.message,
+      };
+
       notification$.next(notification);
     }
 
