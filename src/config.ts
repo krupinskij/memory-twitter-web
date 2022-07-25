@@ -7,7 +7,7 @@ import { notification$ } from 'components/Notifications';
 import env from 'env';
 import { HttpResponse } from 'model';
 
-export const queryClient = new QueryClient();
+export const queryClient = new QueryClient({ defaultOptions: { queries: { retry: 0 } } });
 
 axios.defaults.baseURL = `${env.URL}/api`;
 axios.defaults.withCredentials = true;
