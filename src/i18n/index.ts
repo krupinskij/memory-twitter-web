@@ -11,10 +11,20 @@ i18next
   .init({
     fallbackLng: 'en',
     load: 'languageOnly',
-    ns: ['display', 'game', 'gameoptions', 'homepage', 'language', 'menu', 'ranking', 'settings'],
+    ns: [
+      'display',
+      'game',
+      'gameoptions',
+      'homepage',
+      'language',
+      'menu',
+      'ranking',
+      'settings',
+      'utils',
+    ],
     debug: true,
     backend: {
-      loadPath: 'src/i18n/translations/{{lng}}/{{ns}}.json',
+      loadPath: '/src/i18n/translations/{{lng}}/{{ns}}.json',
       crossDomain: true,
     },
     detection: {

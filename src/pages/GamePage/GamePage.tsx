@@ -10,14 +10,13 @@ import BoardCard, { Board } from 'components/Card';
 import { Spinner } from 'components/Loading';
 import useGame from 'hooks/useGame';
 import useTimer from 'hooks/useTimer';
-import { Card, CardType, Level, MapLevel, User } from 'model';
+import { Card, CardType, Level, LevelPathParams, MapLevel, User } from 'model';
 import { useSettings } from 'providers/SettingsProvider';
 import { calcDelay, randomizeIndexes } from 'utils/helpers';
 
 import Info from './components/Info';
 import Panel from './components/Panel';
 import ResultPanel from './components/ResultPanel';
-import { PathParams } from './model';
 
 const handleSelect = (followings: User[]): Card[] => {
   const numberOfCards = 2 * followings.length;
@@ -43,7 +42,7 @@ const handleSelect = (followings: User[]): Card[] => {
 };
 
 const GamePage = () => {
-  const { level = Level.Easy } = useParams<PathParams>();
+  const { level = Level.Easy } = useParams<LevelPathParams>();
   const { t } = useTranslation();
 
   const { data: cards } = useQuery<User[], unknown, Card[]>(
