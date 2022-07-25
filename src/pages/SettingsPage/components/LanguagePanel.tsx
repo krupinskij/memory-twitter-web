@@ -8,7 +8,7 @@ import { StorageKey } from 'model';
 
 const LanguagePanel = () => {
   const [language, setLanguage] = useState(
-    () => localStorage.getItem(StorageKey.Language) || 'default'
+    () => localStorage.getItem(StorageKey.Language)?.split('-')[0] || 'default'
   );
 
   const { t } = useTranslation();
