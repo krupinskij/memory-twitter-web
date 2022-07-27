@@ -13,6 +13,7 @@ i18next
     load: 'languageOnly',
     ns: [
       'display',
+      'faq',
       'game',
       'gameoptions',
       'homepage',
