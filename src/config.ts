@@ -32,14 +32,14 @@ axios.interceptors.response.use(
   async (error: any) => {
     const data = error.response?.data as HttpResponse;
 
-    // if (data.verbose) {
-    const notification = {
-      id: nanoid(),
-      message: data.message,
-    };
+    if (data.verbose) {
+      const notification = {
+        id: nanoid(),
+        message: data.message,
+      };
 
-    notification$.next(notification);
-    // }
+      notification$.next(notification);
+    }
 
     if (data.logout) {
       await API.logout();
