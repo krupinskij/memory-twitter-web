@@ -20,9 +20,9 @@ const Button = ({
       className={`rounded-full font-bold border-2 border-primary py-2
         ${variant} contained:bg-primary contained:text-textContained outlined:bg-background
         ${size}  medium:px-4 large:px-20 large:text-lg
-        ${disabled ? 'pointer-events-none border-borderSecondary contained:bg-borderSecondary' : ''}
+        ${disabled ? 'cursor-not-allowed border-borderSecondary contained:bg-borderSecondary' : ''}
       `}
-      onClick={onClick}
+      onClick={disabled ? () => {} : onClick}
     >
       {children}
     </button>

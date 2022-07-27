@@ -18,9 +18,9 @@ const Radio = ({ value, disabled, children, onCheck }: RadioProps) => {
         flex items-center gap-4 border-2 
         ${checked ? 'border-primary' : 'border-borderSecondary'} 
         rounded px-8 py-4 cursor-pointer bg-background min-w-max
-        ${disabled ? 'pointer-events-none' : ''}
+        ${disabled ? 'cursor-not-allowed' : ''}
       `}
-      onClick={onCheck}
+      onClick={disabled ? () => {} : onCheck}
     >
       <div
         className={`
