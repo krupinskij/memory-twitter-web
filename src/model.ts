@@ -26,6 +26,10 @@ export const MapLayout: Record<number, [number, number]> = {
   [72]: [6, 12],
 };
 
+export type LevelPathParams = {
+  level: Level;
+};
+
 export enum CardType {
   Name = 'name',
   Picture = 'picture',
@@ -65,3 +69,10 @@ export enum StorageKey {
   StatisticsRemain = 'statistics-remain',
   StatisticsTime = 'statistics-time',
 }
+
+export type HttpResponse = {
+  message: string;
+  httpStatus: number;
+  logout: boolean;
+  verbose: boolean;
+};

@@ -1,16 +1,41 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router';
+import { useQuery } from 'react-query';
+import { useLocation, useNavigate } from 'react-router';
 
+import API, { QUERY } from 'api';
 import Button from 'components/Button';
+import { Spinner } from 'components/Loading';
 import Radio, { RadioGroup } from 'components/Radio';
 import { Level } from 'model';
+import { useNotification } from 'providers/NotificationProvider';
 
 const GameOptionsPage = () => {
-  const [level, setLevel] = useState<Level>(Level.Easy);
+  const [level, setLevel] = useState<Level | null>(null);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { t } = useTranslation();
+  const { send } = useNotification();
+
+  const { data: availableLevels = new Set(), isLoading } = useQuery(QUERY.LEVELS, API.getLevels, {
+    select: (data) => {
+      if (!level && data.length > 0) setLevel(data[0]);
+      return new Set(data);
+    },
+  });
+
+  useEffect(() => {
+    const error = (location.state as any)?.error;
+    if (error) {
+      send(error);
+      delete (location.state as any)?.error;
+    }
+  }, []);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div>
@@ -18,12 +43,17 @@ const GameOptionsPage = () => {
       <div className="flex flex-col gap-4 items-center m-6">
         <RadioGroup value={level}>
           {Object.values(Level).map((level) => (
-            <Radio key={level} value={level} onCheck={() => setLevel(level)}>
+            <Radio
+              key={level}
+              value={level}
+              disabled={!availableLevels.has(level)}
+              onCheck={() => setLevel(level)}
+            >
               {t(`gameoptions:${level}`)}
             </Radio>
           ))}
         </RadioGroup>
-        <Button size="large" onClick={() => navigate(`/game/${level}`)}>
+        <Button size="large" disabled={!level} onClick={() => navigate(`/game/${level}`)}>
           {t('gameoptions:play')}
         </Button>
       </div>

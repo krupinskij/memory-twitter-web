@@ -2,6 +2,7 @@ import React, { createContext } from 'react';
 import { useQuery } from 'react-query';
 
 import API, { QUERY } from 'api';
+import { LogoPlaceholder } from 'components/Loading';
 import { User } from 'model';
 
 type Auth = {
@@ -15,10 +16,14 @@ type AuthProviderProps = {
 };
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const { data: user } = useQuery(QUERY.CURRENT_USER, API.getCurrentUser, {
-    retry: 1,
+  const { data: user, isLoading } = useQuery(QUERY.CURRENT_USER, API.getCurrentUser, {
     refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchInterval: (data) => (data ? 10 * 60 * 1000 : false),
   });
+
+  if (isLoading) return <LogoPlaceholder />;
+
   return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
 };
 

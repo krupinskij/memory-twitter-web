@@ -3,4 +3,5 @@ export const QUERY = {
   AUTHENTICATE: 'authenticate',
   FOLLOWINGS: 'followings',
   RESULTS: 'results',
+  LEVELS: 'levels',
 };

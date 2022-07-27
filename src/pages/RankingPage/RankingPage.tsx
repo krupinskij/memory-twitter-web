@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useInfiniteQuery } from 'react-query';
 
 import API, { QUERY } from 'api';
+import { Spinner } from 'components/Loading';
 import { Level, Order, Result, Players } from 'model';
 
 import Panel from './components/Panel';
@@ -74,12 +75,10 @@ const RankingPage = () => {
                 isLast={items.length === idx + 1}
               />
             ))}
-            <div className="loader" ref={observerElem}>
-              {isFetchingNextPage && hasNextPage && 'Loading...'}
-            </div>
+            <div ref={observerElem}>{isFetchingNextPage && hasNextPage && <Spinner />}</div>
           </>
         ) : (
-          <div>Error</div>
+          <Spinner />
         )}
       </div>
       <Panel title={t('ranking:options')}>

@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from 'react-query';
 
 import API, { QUERY } from 'api';
 import { User } from 'model';
+import { formatProfilePicture } from 'utils/profilePicture';
 
 type NavbarUserProps = {
   user: User;
@@ -28,7 +29,7 @@ const MenuUser = ({ user, short }: NavbarUserProps) => {
       className="flex flex-row items-center p-2 gap-3 rounded-full hover:bg-shadowSecondary"
     >
       <img
-        src={`https://pbs.twimg.com/profile_images/${user.pp.replace('$', '_bigger')}`}
+        src={formatProfilePicture(user.pp, '_bigger')}
         alt={user.nm}
         className="w-12 h-12 rounded-full"
       />

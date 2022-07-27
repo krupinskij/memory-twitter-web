@@ -1,6 +1,8 @@
 import { IconType } from 'react-icons';
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 
+import { Level } from 'model';
+
 type RouteLinkProps = {
   icon: IconType;
   activeIcon: IconType;
