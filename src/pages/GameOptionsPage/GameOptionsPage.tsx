@@ -1,16 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 import Button from 'components/Button';
 import Radio, { RadioGroup } from 'components/Radio';
 import { Level } from 'model';
+import { useNotification } from 'providers/NotificationProvider';
 
 const GameOptionsPage = () => {
   const [level, setLevel] = useState<Level>(Level.Easy);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { t } = useTranslation();
+  const { send } = useNotification();
+
+  useEffect(() => {
+    const error = (location.state as any)?.error;
+    if (error) {
+      send(error);
+      delete (location.state as any)?.error;
+    }
+  }, []);
 
   return (
     <div>

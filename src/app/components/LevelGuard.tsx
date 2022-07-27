@@ -1,11 +1,8 @@
-import { nanoid } from 'nanoid/non-secure';
-import React, { memo } from 'react';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Navigate, useParams } from 'react-router';
-import { delay } from 'rxjs';
 
-import i18n from 'i18n';
 import { Level, LevelPathParams } from 'model';
-import { notification$, useNotification } from 'providers/NotificationProvider';
 
 type GuardProps = {
   children: React.ReactNode;
@@ -13,9 +10,10 @@ type GuardProps = {
 
 const LevelGuard: React.FC<GuardProps> = ({ children }) => {
   const { level } = useParams<LevelPathParams>();
+  const { t } = useTranslation();
 
   if (!level || !Object.values(Level).includes(level)) {
-    return <Navigate to="/game" />;
+    return <Navigate to="/game" state={{ error: t('utils:nolevel') }} />;
   }
 
   return <>{children}</>;

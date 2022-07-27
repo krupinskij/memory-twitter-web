@@ -38,7 +38,7 @@ axios.interceptors.response.use(
         message: data.message,
       };
 
-      notification$.next(notification);
+      // notification$.next(notification);
     }
 
     if (data.logout) {
