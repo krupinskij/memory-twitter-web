@@ -3,6 +3,7 @@ import { BsHandIndex, BsStopwatch, BsStar } from 'react-icons/bs';
 import { Timer } from 'hooks/useTimer';
 import { Result } from 'model';
 import { format } from 'utils/date';
+import { formatProfilePicture } from 'utils/profilePicture';
 
 type ResultItemProps = Omit<Result, 'id'> & {
   pos: number;
@@ -25,7 +26,7 @@ const ResultItem = ({ user, time, clicks, createdAt, pos, isFirst, isLast }: Res
     >
       <a href={`https://twitter.com/${user.un}`} target="_blank" className="z-10">
         <img
-          src={`https://pbs.twimg.com/profile_images/${user.pp.replace('$', '_bigger')}`}
+          src={formatProfilePicture(user.pp, '_bigger')}
           alt={user.nm}
           className="w-16 h-16 rounded-full border-4 border-background"
         />

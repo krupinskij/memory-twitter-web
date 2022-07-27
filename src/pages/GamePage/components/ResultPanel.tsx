@@ -5,6 +5,7 @@ import Button, { LinkButton } from 'components/Button';
 import { Spacer } from 'components/Layout';
 import { Timer } from 'hooks/useTimer';
 import { Level } from 'model';
+import { formatProfilePicture } from 'utils/profilePicture';
 
 type ResultViewProps = {
   clicks: number;
@@ -23,7 +24,7 @@ const ResultPanel = ({ clicks, time, level }: ResultViewProps) => {
     <>
       <div className="bg-shadow flex flex-col items-center min-w-[520px] py-12 mb-8 rounded-lg">
         <img
-          src={`https://pbs.twimg.com/profile_images/${user?.pp.replace('$', '_200x200')}`}
+          src={formatProfilePicture(user?.pp, '_200x200')}
           alt="avatar"
           className="rounded-full border-8 border-background h-[200px] w-[200px] shadow-[0_0_20px] shadow-shadowTertiary mb-8"
         />

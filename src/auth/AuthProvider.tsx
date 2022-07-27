@@ -17,7 +17,6 @@ type AuthProviderProps = {
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const { data: user, isLoading } = useQuery(QUERY.CURRENT_USER, API.getCurrentUser, {
-    retry: 1,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchInterval: (data) => (data ? 10 * 60 * 1000 : false),

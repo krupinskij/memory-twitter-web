@@ -5,6 +5,7 @@ import LogoSingle from 'assets/icons/logo_single.svg';
 import useCardAnimation from 'hooks/useCardAnimation';
 import { Card as CardT, CardType, Level } from 'model';
 import { areCardsEqual } from 'utils/cards';
+import { formatProfilePicture } from 'utils/profilePicture';
 import { toHideCard$, queueCard$, toRemoveCard$ } from 'utils/queues';
 
 type CardProps = {
@@ -53,10 +54,10 @@ const Card = ({ card, level, delay }: CardProps) => {
       initial={{ opacity: 0 }}
       animate={controls}
       className={`
-		aspect-square m-1 p-1 rounded-lg border-1 border-border bg-background
-		flex justify-center items-center
-		select-none ${isBlocked ? 'cursor-auto' : 'cursor-pointer'}
-    `}
+        aspect-square m-1 p-1 rounded-lg border-1 border-border bg-background
+        flex justify-center items-center
+        select-none ${isBlocked ? 'cursor-auto' : 'cursor-pointer'}
+      `}
       onClick={handleClick}
     >
       <div className="aspect-square relative flex justify-center items-center w-full h-full">
@@ -64,11 +65,7 @@ const Card = ({ card, level, delay }: CardProps) => {
           //@ts-ignore
           <LogoSingle className="rounded" />
         ) : card.type === CardType.Picture ? (
-          <img
-            src={`https://pbs.twimg.com/profile_images/${card.data.replace('$', '_200x200')}`}
-            alt="user"
-            className="rounded"
-          />
+          <img src={formatProfilePicture(card.data, '_200x200')} alt="user" className="rounded" />
         ) : (
           <span
             className={`text-center font-bold word-break text-card ${level} legendary:text-cardSmall`}
