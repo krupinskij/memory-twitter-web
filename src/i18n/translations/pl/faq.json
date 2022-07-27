@@ -15,18 +15,18 @@
   },
   "stop_following": {
     "q": "Przestałam/em obserwować jedno konto, a dalej je widzę, dlaczego?",
-    "a1": "Informacja o tym kogo obserwujesz jest na jakiś czas zapisywana w pamięci podręcznej. Poczekaj przynajmniej 5 minut."
+    "a": "Informacja o tym kogo obserwujesz jest na jakiś czas zapisywana w pamięci podręcznej. Poczekaj przynajmniej 5 minut."
   },
   "following_change": {
-    "q": "Ktoś z moich obserwowanych zmienił nazwę/zdjęcie profilowe, a dalej widzę stare dane, dlaczego?",
+    "q": "Ktoś z moich obserwowanych zmienił nazwę lub zdjęcie profilowe, a dalej widzę stare dane, dlaczego?",
     "a": "jw."
   },
   "me_change": {
-    "q": "Ja zmieniłam/em nazwę/zdjęcie profilowe, a dalej widzę stare dane, dlaczego?",
+    "q": "Ja zmieniłam/em nazwę lub zdjęcie profilowe, a dalej widzę stare dane, dlaczego?",
     "a": "Wyloguj się i zaloguj ponownie."
   },
   "language": {
-    "q": "Znam język, którego tutaj nie ma albo widzę błąd w tłumaczeniu. Mogę pomóc?",
+    "q": "Znam język, którego tutaj nie ma lub widzę błąd w tłumaczeniu. Mogę pomóc?",
     "a": "Pewnie. Skontaktuj się ze mną. Wytłumaczę co i jak."
   },
   "logout": {

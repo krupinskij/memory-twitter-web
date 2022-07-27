@@ -2,7 +2,7 @@
   "blocked_levels": {
     "q": "Why some levels are blocked?",
     "a1": "You follows not enough accounts. You need 8, 12, 16 and 36 following accounts respectively.",
-    "a2": "Only matters accounts with custom profile picture."
+    "a2": "Only accounts with custom profile picture count."
   },
   "time": {
     "q": "How is time calculated?",
@@ -15,19 +15,15 @@
   },
   "stop_following": {
     "q": "I've stopped following one account, but I still see it, why?",
-    "a1": "The info who do you following is cached. Wait at least 5 minutes."
+    "a": "The info who do you following is cached. Wait at least 5 minutes."
   },
   "following_change": {
-    "q": "One of my followings has changed his name/profile picture, but I still see the old one, why?",
+    "q": "One of my followings has changed his name or profile picture, but I still see the old one, why?",
     "a": "as above"
   },
   "me_change": {
-    "q": "I've changed my name/profile picture, but I still see the old one, why?",
+    "q": "I've changed my name or profile picture, but I still see the old one, why?",
     "a": "Log out and log in again."
-  },
-  "language": {
-    "q": "There is no version of the language, that I know or I see a mistake in the translation. Can I help?",
-    "a": "Nope."
   },
   "logout": {
     "q": "It logged me out all of a sudden and I don't know why.",
