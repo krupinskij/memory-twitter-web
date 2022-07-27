@@ -3,9 +3,9 @@ import { nanoid } from 'nanoid/non-secure';
 import { QueryClient } from 'react-query';
 
 import API, { QUERY } from 'api';
-import { notification$ } from 'components/Notifications';
 import env from 'env';
 import { HttpResponse } from 'model';
+import { notification$ } from 'providers/NotificationProvider';
 
 export const queryClient = new QueryClient({ defaultOptions: { queries: { retry: 0 } } });
 

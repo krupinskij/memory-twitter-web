@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import Notification from './components/Notification';
-import { notification$, removedNotification$, NotificationModel } from './model';
+import { removedNotification$, NotificationModel, notification$ } from '../model';
+import Notification from './Notification';
 
 const Notifications = () => {
   const [notificationList, setNotificationList] = useState<NotificationModel[]>([]);

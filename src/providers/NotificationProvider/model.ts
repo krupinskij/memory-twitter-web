@@ -1,5 +1,8 @@
-import { nanoid } from 'nanoid/non-secure';
 import { delay, Subject } from 'rxjs';
+
+export type NotificationUtils = {
+  send: (message: string) => void;
+};
 
 export type NotificationModel = {
   message: string;
