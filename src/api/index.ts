@@ -47,6 +47,10 @@ const getResults = async (level: Level, order: Order, users: Players, lastItemId
   return data;
 };
 
+const sendTweet = async () => {
+  await axios.post('tweet');
+};
+
 const API = {
   getCurrentUser,
   authenticate,
@@ -55,6 +59,7 @@ const API = {
   getFollowings,
   saveResult,
   getResults,
+  sendTweet,
 };
 
 export default API;

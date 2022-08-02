@@ -1,5 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next';
+import { useMutation } from 'react-query';
 
+import API from 'api';
 import { useAuth } from 'auth';
 import Button, { LinkButton } from 'components/Button';
 import { Spacer } from 'components/Layout';
@@ -19,6 +21,8 @@ const ResultPanel = ({ clicks, time, level }: ResultViewProps) => {
   const timeFormat = timer.timeFormat('%m:%s:%ms');
 
   const { t } = useTranslation();
+
+  const { mutate: sendTweet } = useMutation(API.sendTweet);
 
   return (
     <>
@@ -52,7 +56,7 @@ const ResultPanel = ({ clicks, time, level }: ResultViewProps) => {
         <LinkButton variant="outlined" href="/game">
           {t('game:result.play-again')}
         </LinkButton>
-        <Button onClick={() => {}}>{t('game:result.share')}</Button>
+        <Button onClick={() => sendTweet()}>{t('game:result.share')}</Button>
       </Spacer>
     </>
   );
