@@ -64,7 +64,7 @@ const GamePage = () => {
   const boardControls = useAnimation();
   const resultControls = useAnimation();
 
-  const { mutate: saveResult } = useMutation(API.saveResult);
+  const { data: resultId, mutate: saveResult } = useMutation(API.saveResult);
 
   const {
     statistics: { showClicks, showRemain, showTime },
@@ -107,7 +107,9 @@ const GamePage = () => {
         initial={{ scale: 0, height: 0 }}
         className="flex flex-col items-center h-0"
       >
-        {isEnded && <ResultPanel clicks={clickCount} time={time} level={level} />}
+        {isEnded && resultId && (
+          <ResultPanel clicks={clickCount} time={time} level={level} resultId={resultId.id} />
+        )}
       </motion.div>
       <motion.div animate={boardControls} className="flex flex-col items-center">
         <Board level={level} started={isStarted}>

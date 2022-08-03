@@ -49,6 +49,10 @@ export type Result = {
   createdAt: number;
 };
 
+export type Id = {
+  id: string;
+};
+
 export enum Order {
   Clicks = 'clicks',
   Time = 'time',

@@ -13,9 +13,10 @@ type ResultViewProps = {
   clicks: number;
   time: number;
   level: Level;
+  resultId: string;
 };
 
-const ResultPanel = ({ clicks, time, level }: ResultViewProps) => {
+const ResultPanel = ({ clicks, time, level, resultId }: ResultViewProps) => {
   const { user } = useAuth();
   const timer = new Timer(time);
   const timeFormat = timer.timeFormat('%m:%s:%ms');
@@ -56,7 +57,7 @@ const ResultPanel = ({ clicks, time, level }: ResultViewProps) => {
         <LinkButton variant="outlined" href="/game">
           {t('game:result.play-again')}
         </LinkButton>
-        <Button onClick={() => sendTweet()}>{t('game:result.share')}</Button>
+        <Button onClick={() => sendTweet({ resultId, level })}>{t('game:result.share')}</Button>
       </Spacer>
     </>
   );
