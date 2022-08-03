@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -16,6 +17,7 @@ const LanguagePanel = () => {
   const handleLanguageSelect = (language: string) => {
     localStorage.setItem(StorageKey.Language, language);
     setLanguage(language);
+    axios.defaults.headers.common['Accept-Language'] = language;
     i18next.changeLanguage();
   };
 

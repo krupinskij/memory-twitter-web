@@ -4,13 +4,18 @@ import { QueryClient } from 'react-query';
 
 import API, { QUERY } from 'api';
 import env from 'env';
-import { HttpResponse } from 'model';
+import { HttpResponse, StorageKey } from 'model';
 import { notification$ } from 'providers/NotificationProvider';
 
 export const queryClient = new QueryClient({ defaultOptions: { queries: { retry: 0 } } });
 
 axios.defaults.baseURL = `${env.URL}/api`;
 axios.defaults.withCredentials = true;
+
+const defaultLangugage = localStorage.getItem(StorageKey.Language);
+if (defaultLangugage) {
+  axios.defaults.headers.common['Accept-Language'] = defaultLangugage;
+}
 
 axios.interceptors.response.use(
   (value) => {
