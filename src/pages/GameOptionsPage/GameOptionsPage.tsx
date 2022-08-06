@@ -19,9 +19,14 @@ const GameOptionsPage = () => {
   const { send } = useNotification();
 
   const { data: availableLevels = new Set(), isLoading } = useQuery(QUERY.LEVELS, API.getLevels, {
-    select: (data) => {
-      if (!level && data.length > 0) setLevel(data[0]);
-      return new Set(data);
+    select: (data) => new Set(data),
+    onSuccess: (data) => {
+      setLevel((level) => {
+        if (!level) return data.size > 0 ? Level.Easy : null;
+        if (!data.has(level)) return null;
+
+        return level;
+      });
     },
   });
 

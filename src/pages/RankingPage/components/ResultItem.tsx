@@ -32,17 +32,28 @@ const ResultItem = ({ user, time, clicks, createdAt, pos, isFirst, isLast }: Res
         />
       </a>
       <div className="p-1">
-        <div className="mt-1 mb-3">
+        <div className="mt-1 mb-3 flex">
           <span className="font-semibold">
-            <a href={`https://twitter.com/${user.un}`} target="_blank">
+            <a
+              className="truncate max-w-[10vw] block"
+              title={user.nm}
+              href={`https://twitter.com/${user.un}`}
+              target="_blank"
+            >
               {user.nm}
             </a>
-          </span>{' '}
+          </span>
+          &nbsp;
           <span className="text-textSecondary">
-            <a href={`https://twitter.com/${user.un}`} target="_blank">
+            <a
+              className="truncate max-w-[10vw] block float-left"
+              title={`@${user.un}`}
+              href={`https://twitter.com/${user.un}`}
+              target="_blank"
+            >
               @{user.un}
-            </a>{' '}
-            · {format(createdAt)}
+            </a>
+            &nbsp;· {format(createdAt)}
           </span>
         </div>
         <div className="grid grid-cols-3 h-[30px]">

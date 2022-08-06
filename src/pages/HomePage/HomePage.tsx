@@ -19,7 +19,7 @@ const HomePage = () => {
 
   return (
     <div className="flex gap-12 mt-24 mx-12">
-      <div className="w-[30%] self-center hidden lg:block">
+      <div className="w-[30%] self-center hidden lg:!block">
         <Logo />
       </div>
       <div className="mt-auto mb-6">

@@ -2,7 +2,7 @@ import { motion, useAnimation } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useMutation, useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 import API, { QUERY } from 'api';
 import Button from 'components/Button';
@@ -45,7 +45,7 @@ const GamePage = () => {
   const { level = Level.Easy } = useParams<LevelPathParams>();
   const { t } = useTranslation();
 
-  const { data: cards } = useQuery<User[], unknown, Card[]>(
+  const { data: cards, isError } = useQuery<User[], unknown, Card[]>(
     QUERY.FOLLOWINGS,
     () => API.getFollowings(level),
     {
@@ -95,6 +95,8 @@ const GamePage = () => {
     resultControls.set({ height: 'auto' });
     await resultControls.start(() => ({ scale: [0, 1], transition: { duration: 0.5 } }));
   };
+
+  if (isError) return <Navigate to="/game" />;
 
   if (!level || !cards) return <Spinner />;
 
