@@ -10,5 +10,6 @@
   "result.clicks_other": "You've made <1>{{ clicks }} clicks</1>",
   "result.time": "in <1>{{ time }}</1>.",
   "result.play-again": "Play again",
-  "result.share": "Share on Twitter"
+  "result.share": "Share on Twitter",
+  "tweet-success": "Your tweet has been sent. <1>View</1>"
 }

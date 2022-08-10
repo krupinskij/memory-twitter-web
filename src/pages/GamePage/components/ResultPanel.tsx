@@ -7,6 +7,7 @@ import Button, { LinkButton } from 'components/Button';
 import { Spacer } from 'components/Layout';
 import { Timer } from 'hooks/useTimer';
 import { Level } from 'model';
+import { useNotification } from 'providers/NotificationProvider';
 import { formatProfilePicture } from 'utils/profilePicture';
 
 type ResultViewProps = {
@@ -22,8 +23,28 @@ const ResultPanel = ({ clicks, time, level, resultId }: ResultViewProps) => {
   const timeFormat = timer.timeFormat('%m:%s:%ms');
 
   const { t } = useTranslation();
+  const { send } = useNotification();
 
-  const { mutate: sendTweet } = useMutation(API.sendTweet);
+  const {
+    mutate: sendTweet,
+    isLoading,
+    isSuccess,
+  } = useMutation(API.sendTweet, {
+    onSuccess: (tweet) => {
+      send(
+        <Trans i18nKey="game:tweet-success">
+          Your tweet has been sent.&nbsp;
+          <a
+            href={`https://twitter.com/${user?.un}/status/${tweet.id}`}
+            target="_blank"
+            className="font-bold"
+          >
+            View.
+          </a>
+        </Trans>
+      );
+    },
+  });
 
   return (
     <>
@@ -57,7 +78,9 @@ const ResultPanel = ({ clicks, time, level, resultId }: ResultViewProps) => {
         <LinkButton variant="outlined" href="/game">
           {t('game:result.play-again')}
         </LinkButton>
-        <Button onClick={() => sendTweet({ resultId, level })}>{t('game:result.share')}</Button>
+        {!isSuccess && (
+          <Button onClick={() => sendTweet({ resultId, level })}>{t('game:result.share')}</Button>
+        )}
       </Spacer>
     </>
   );

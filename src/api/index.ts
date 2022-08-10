@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Id, Level, Order, Players, Result, User } from 'model';
+import { Id, Level, Order, Players, Result, Tweet, User } from 'model';
 
 import { AuthLink, ResultId, UserResult } from './model';
 
@@ -50,7 +50,9 @@ const getResults = async (level: Level, order: Order, users: Players, lastItemId
 };
 
 const sendTweet = async ({ resultId, level }: ResultId) => {
-  await axios.post(`tweet/${resultId}?level=${level}`);
+  const { data } = await axios.post<Tweet>(`tweet/${resultId}?level=${level}`);
+
+  return data;
 };
 
 const API = {
