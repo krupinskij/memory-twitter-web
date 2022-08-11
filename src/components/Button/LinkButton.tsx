@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 type LinkButtonProps = {
   variant?: 'contained' | 'outlined';
-  size?: 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large';
   href: string;
   children: React.ReactNode;
   short?: boolean;
@@ -37,9 +37,9 @@ const LinkButton = ({
     <Link
       to={href}
       className={`
-        rounded-full font-bold border-2 border-primary py-2
+        rounded-full font-bold border-2 border-primary py-2 block
         ${variant} contained:bg-primary contained:text-textContained outlined:bg-background
-        ${size} medium:px-4 large:px-20 large:py-4 large:text-lg
+        ${size} medium:px-4 large:px-20 large:py-4 large:text-lg small:text-xs small:leading-3 small:px-2 small:py-1
       `}
     >
       {children}

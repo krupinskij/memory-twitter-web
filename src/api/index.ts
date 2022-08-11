@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { Id, Level, Order, Players, Result, Tweet, User } from 'model';
 
-import { AuthLink, ResultId, UserResult } from './model';
+import { AuthLink, UserResult } from './model';
 
 const getCurrentUser = async () => {
   const { data } = await axios.get<User>('user/me');
@@ -40,6 +40,12 @@ const saveResult = async ({ clicks, time, level }: UserResult) => {
   return data;
 };
 
+const getResult = async (resultId: string) => {
+  const { data } = await axios.get<Result>(`result/${resultId}`);
+
+  return data;
+};
+
 const getResults = async (level: Level, order: Order, users: Players, lastItemId?: string) => {
   const lastItemQuery = lastItemId ? `&lastItem=${lastItemId}` : '';
   const { data } = await axios.get<Result[]>(
@@ -49,8 +55,8 @@ const getResults = async (level: Level, order: Order, users: Players, lastItemId
   return data;
 };
 
-const sendTweet = async ({ resultId, level }: ResultId) => {
-  const { data } = await axios.post<Tweet>(`tweet/${resultId}?level=${level}`);
+const sendTweet = async (resultId: string) => {
+  const { data } = await axios.post<Tweet>(`tweet/${resultId}`);
 
   return data;
 };
@@ -62,6 +68,7 @@ const API = {
   getLevels,
   getFollowings,
   saveResult,
+  getResult,
   getResults,
   sendTweet,
 };

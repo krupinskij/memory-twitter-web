@@ -9,8 +9,3 @@ export type UserResult = {
   time: number;
   level: Level;
 };
-
-export type ResultId = {
-  resultId: string;
-  level: Level;
-};

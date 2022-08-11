@@ -7,6 +7,7 @@ import GameOptionsPage from 'pages/GameOptionsPage';
 import GamePage from 'pages/GamePage';
 import HomePage from 'pages/HomePage';
 import RankingPage from 'pages/RankingPage';
+import ResultPage from 'pages/ResultPage';
 import SettingsPage from 'pages/SettingsPage';
 
 import LevelGuard from './components/LevelGuard';
@@ -38,6 +39,14 @@ const AppRoutes: React.FC = () => {
         element={
           <AuthGuard>
             <RankingPage />
+          </AuthGuard>
+        }
+      />
+      <Route
+        path="/result/:resultId"
+        element={
+          <AuthGuard>
+            <ResultPage />
           </AuthGuard>
         }
       />

@@ -3,17 +3,5 @@
   "statistics": "Statystyki",
   "clicks": "Kliknięcia:",
   "remain": "Pozostało:",
-  "time": "Czas:",
-  "result.title": "Ukończyłaś/eś grę",
-  "result.level_easy": "na poziomie <1>łatwym</1>.",
-  "result.level_medium": "na poziomie <1>średnim</1>.",
-  "result.level_hard": "na poziomie <1>trudnym</1>.",
-  "result.level_legendary": "na poziomie <1>legendarnym</1>.",
-  "result.clicks_one": "Wykonałaś/eś <1>{{ clicks }} kliknięcie</1>",
-  "result.clicks_few": "Wykonałaś/eś <1>{{ clicks }} kliknięcia</1>",
-  "result.clicks_many": "Wykonałaś/eś <1>{{ clicks }} kliknięć</1>",
-  "result.time": "w <1>{{ time }}</1>.",
-  "result.play-again": "Zagraj jeszcze raz",
-  "result.share": "Udostępnij na Twitterze",
-  "tweet-success": "Twój tweet został wysłany. <1>Wyświetl</1>"
+  "time": "Czas:"
 }

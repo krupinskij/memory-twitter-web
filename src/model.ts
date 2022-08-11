@@ -34,6 +34,10 @@ export type LevelPathParams = {
   level: Level;
 };
 
+export type ResultPathParams = {
+  resultId: string;
+};
+
 export enum CardType {
   Name = 'name',
   Picture = 'picture',
@@ -50,6 +54,8 @@ export type Result = {
   user: User;
   clicks: number;
   time: number;
+  level: Level;
+  tweeted: boolean;
   createdAt: number;
 };
 

@@ -3,13 +3,5 @@
   "statistics": "Statistics",
   "clicks": "Clicks:",
   "remain": "Remain:",
-  "time": "Time:",
-  "result.title": "You've finished the game",
-  "result.level": "on <1>{{ level }}</1> level.",
-  "result.clicks_one": "You've made <1>{{ clicks }} click</1>",
-  "result.clicks_other": "You've made <1>{{ clicks }} clicks</1>",
-  "result.time": "in <1>{{ time }}</1>.",
-  "result.play-again": "Play again",
-  "result.share": "Share on Twitter",
-  "tweet-success": "Your tweet has been sent. <1>View</1>"
+  "time": "Time:"
 }
