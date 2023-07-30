@@ -1,5 +1,7 @@
+import React from 'react';
+
 type NotificationProps = {
-  message: string;
+  message: React.ReactNode;
 };
 
 const Notification = ({ message }: NotificationProps) => {

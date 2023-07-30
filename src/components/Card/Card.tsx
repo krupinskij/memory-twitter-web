@@ -60,10 +60,10 @@ const Card = ({ card, level, delay }: CardProps) => {
       `}
       onClick={handleClick}
     >
-      <div className="aspect-square relative flex justify-center items-center w-full h-full">
+      <div className="aspect-square relative flex justify-center items-center max-w-full max-h-full w-full h-full">
         {isHidden ? (
           //@ts-ignore
-          <LogoSingle className="rounded" />
+          <LogoSingle className="rounded w-[inherit]" />
         ) : card.type === CardType.Picture ? (
           <img src={formatProfilePicture(card.data, '_200x200')} alt="user" className="rounded" />
         ) : (

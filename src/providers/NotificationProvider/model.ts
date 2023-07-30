@@ -1,11 +1,12 @@
+import React from 'react';
 import { delay, Subject } from 'rxjs';
 
 export type NotificationUtils = {
-  send: (message: string) => void;
+  send: (message: React.ReactNode) => void;
 };
 
 export type NotificationModel = {
-  message: string;
+  message: React.ReactNode;
   id: string;
 };
 

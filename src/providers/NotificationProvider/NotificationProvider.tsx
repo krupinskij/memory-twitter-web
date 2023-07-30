@@ -11,7 +11,7 @@ type NotificationProviderProps = {
 };
 
 const NotificationProvider = ({ children }: NotificationProviderProps) => {
-  const send = useCallback((message: string) => {
+  const send = useCallback((message: React.ReactNode) => {
     const notification = {
       id: nanoid(),
       message,

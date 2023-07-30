@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { useInfiniteQuery } from 'react-query';
 
 import API, { QUERY } from 'api';
+import { useAuth } from 'auth';
 import { Spinner } from 'components/Loading';
 import { Level, Order, Result, Players } from 'model';
 
@@ -13,6 +14,8 @@ import ResultItem from './components/ResultItem';
 
 const RankingPage = () => {
   const { t } = useTranslation();
+
+  const { user } = useAuth();
 
   const [level, setLevel] = useState(Level.Easy);
   const [order, setOrder] = useState(Order.Clicks);
@@ -70,6 +73,7 @@ const RankingPage = () => {
               <ResultItem
                 key={result.id}
                 {...result}
+                personal={user?.id === result.user.id}
                 pos={idx + 1}
                 isFirst={idx === 0}
                 isLast={items.length === idx + 1}

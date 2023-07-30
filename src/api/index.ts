@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Level, Order, Players, Result, User } from 'model';
+import { Id, Level, Order, Players, Result, Tweet, User } from 'model';
 
 import { AuthLink, UserResult } from './model';
 
@@ -35,7 +35,15 @@ const getFollowings = async (level: Level) => {
 };
 
 const saveResult = async ({ clicks, time, level }: UserResult) => {
-  await axios.post(`result?level=${level}`, { clicks, time });
+  const { data } = await axios.post<Id>(`result?level=${level}`, { clicks, time });
+
+  return data;
+};
+
+const getResult = async (resultId: string) => {
+  const { data } = await axios.get<Result>(`result/${resultId}`);
+
+  return data;
 };
 
 const getResults = async (level: Level, order: Order, users: Players, lastItemId?: string) => {
@@ -47,6 +55,12 @@ const getResults = async (level: Level, order: Order, users: Players, lastItemId
   return data;
 };
 
+const sendTweet = async (resultId: string) => {
+  const { data } = await axios.post<Tweet>(`tweet/${resultId}`);
+
+  return data;
+};
+
 const API = {
   getCurrentUser,
   authenticate,
@@ -54,7 +68,9 @@ const API = {
   getLevels,
   getFollowings,
   saveResult,
+  getResult,
   getResults,
+  sendTweet,
 };
 
 export default API;

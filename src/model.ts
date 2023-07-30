@@ -5,6 +5,10 @@ export type User = {
   pp: string;
 };
 
+export type Tweet = {
+  id: string;
+};
+
 export enum Level {
   Easy = 'easy',
   Medium = 'medium',
@@ -30,6 +34,10 @@ export type LevelPathParams = {
   level: Level;
 };
 
+export type ResultPathParams = {
+  resultId: string;
+};
+
 export enum CardType {
   Name = 'name',
   Picture = 'picture',
@@ -46,7 +54,13 @@ export type Result = {
   user: User;
   clicks: number;
   time: number;
+  level: Level;
+  tweeted: boolean;
   createdAt: number;
+};
+
+export type Id = {
+  id: string;
 };
 
 export enum Order {

@@ -1,0 +1,10 @@
+{
+  "tweet-success": "Your tweet has been sent. <1>View</1>",
+  "title": "You've finished the game",
+  "level": "on <1>{{ level }}</1> level.",
+  "clicks_one": "You've made <1>{{ clicks }} click</1>",
+  "clicks_other": "You've made <1>{{ clicks }} clicks</1>",
+  "time": "in <1>{{ time }}</1>.",
+  "play-again": "Play again",
+  "share": "Share on Twitter"
+}

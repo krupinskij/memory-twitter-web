@@ -20,6 +20,7 @@ i18next
       'language',
       'menu',
       'ranking',
+      'result',
       'settings',
       'utils',
     ],

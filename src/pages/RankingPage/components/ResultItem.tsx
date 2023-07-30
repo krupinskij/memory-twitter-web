@@ -1,18 +1,33 @@
+import { useTranslation } from 'react-i18next';
 import { BsHandIndex, BsStopwatch, BsStar } from 'react-icons/bs';
 
+import { LinkButton } from 'components/Button';
 import { Timer } from 'hooks/useTimer';
 import { Result } from 'model';
 import { format } from 'utils/date';
 import { formatProfilePicture } from 'utils/profilePicture';
 
-type ResultItemProps = Omit<Result, 'id'> & {
+type ResultItemProps = Result & {
+  personal: boolean;
   pos: number;
   isFirst: boolean;
   isLast: boolean;
 };
 
-const ResultItem = ({ user, time, clicks, createdAt, pos, isFirst, isLast }: ResultItemProps) => {
+const ResultItem = ({
+  id,
+  user,
+  time,
+  clicks,
+  createdAt,
+  personal,
+  pos,
+  isFirst,
+  isLast,
+}: ResultItemProps) => {
   const timer = new Timer(time);
+  const { t } = useTranslation();
+
   return (
     <div
       className={`
@@ -32,18 +47,36 @@ const ResultItem = ({ user, time, clicks, createdAt, pos, isFirst, isLast }: Res
         />
       </a>
       <div className="p-1">
-        <div className="mt-1 mb-3">
+        <div className="mt-1 mb-3 flex items-center">
           <span className="font-semibold">
-            <a href={`https://twitter.com/${user.un}`} target="_blank">
+            <a
+              className="truncate max-w-[10vw] block"
+              title={user.nm}
+              href={`https://twitter.com/${user.un}`}
+              target="_blank"
+            >
               {user.nm}
             </a>
-          </span>{' '}
-          <span className="text-textSecondary">
-            <a href={`https://twitter.com/${user.un}`} target="_blank">
-              @{user.un}
-            </a>{' '}
-            · {format(createdAt)}
           </span>
+          &nbsp;
+          <span className="text-textSecondary">
+            <a
+              className="truncate max-w-[10vw] block float-left"
+              title={`@${user.un}`}
+              href={`https://twitter.com/${user.un}`}
+              target="_blank"
+            >
+              @{user.un}
+            </a>
+            &nbsp;· {format(createdAt)}
+          </span>
+          {personal && (
+            <div className="ml-4">
+              <LinkButton size="small" href={`/result/${id}`}>
+                {t('ranking:details')}
+              </LinkButton>
+            </div>
+          )}
         </div>
         <div className="grid grid-cols-3 h-[30px]">
           <div className="flex items-center gap-4 w-full">
