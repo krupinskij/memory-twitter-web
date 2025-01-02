@@ -1,0 +1,14 @@
+{
+  "tweet-success": "Twój tweet został wysłany. <1>Wyświetl</1>",
+  "title": "Ukończyłaś/eś grę",
+  "level_easy": "na poziomie <1>łatwym</1>.",
+  "level_medium": "na poziomie <1>średnim</1>.",
+  "level_hard": "na poziomie <1>trudnym</1>.",
+  "level_legendary": "na poziomie <1>legendarnym</1>.",
+  "clicks_one": "Wykonałaś/eś <1>{{ clicks }} kliknięcie</1>",
+  "clicks_few": "Wykonałaś/eś <1>{{ clicks }} kliknięcia</1>",
+  "clicks_many": "Wykonałaś/eś <1>{{ clicks }} kliknięć</1>",
+  "time": "w <1>{{ time }}</1>.",
+  "play-again": "Zagraj jeszcze raz",
+  "share": "Udostępnij na Twitterze"
+}

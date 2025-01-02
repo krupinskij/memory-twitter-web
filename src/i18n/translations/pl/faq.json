@@ -1,0 +1,36 @@
+{
+  "blocked_levels": {
+    "q": "Dlaczego niektóre poziomy są zablokowane?",
+    "a1": "Obserwujesz zbyt mało kont. Na kolejnych poziomach potrzeba odpowiednio: 8, 12, 16 i 36 obserwowanych.",
+    "a2": "Liczą się tylko konta ze zdjęciem profilowym."
+  },
+  "time": {
+    "q": "Od kiedy do kiedy jest liczony czas?",
+    "a": "Czas jest liczony od kliknięcia w przycisk \"Start\" do kliknięcia w drugą kartę, która stworzy ostatnią parę."
+  },
+  "clicks": {
+    "q": "Jak liczone są kliknięcia?",
+    "a1": "Liczone jest każde kliknięcie w statyczną kartę. Gdy karta się obraca jest na chwilę blokowana i kliknięcie w nią nie powinno zwiększyć licznika. Kliknięcie w puste miejsce po karcie też nic nie robi.",
+    "a2": "Odkrycie a następnie zakrycie tej samej karty to dwa kliknięcia."
+  },
+  "stop_following": {
+    "q": "Przestałam/em obserwować jedno konto, a dalej je widzę, dlaczego?",
+    "a": "Informacja o tym kogo obserwujesz jest na jakiś czas zapisywana w pamięci podręcznej. Poczekaj przynajmniej 5 minut."
+  },
+  "following_change": {
+    "q": "Ktoś z moich obserwowanych zmienił nazwę lub zdjęcie profilowe, a dalej widzę stare dane, dlaczego?",
+    "a": "jw."
+  },
+  "me_change": {
+    "q": "Ja zmieniłam/em nazwę lub zdjęcie profilowe, a dalej widzę stare dane, dlaczego?",
+    "a": "Wyloguj się i zaloguj ponownie."
+  },
+  "language": {
+    "q": "Znam język, którego tutaj nie ma lub widzę błąd w tłumaczeniu. Mogę pomóc?",
+    "a": "Pewnie. Skontaktuj się ze mną. Wytłumaczę co i jak."
+  },
+  "logout": {
+    "q": "Nie wiadomo czemu nagle mnie wylogowało",
+    "a": "Haha rel. Też tego nie ogarniam."
+  }
+}

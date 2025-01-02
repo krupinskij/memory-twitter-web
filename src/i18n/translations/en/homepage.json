@@ -1,0 +1,8 @@
+{
+  "greetings": "Welcome to Memory Twitter!",
+  "logged.message": "Click below to play or check out your followings' results:",
+  "unlogged.message": "It's looks like your not logged yet",
+  "play": "Click to play",
+  "ranking": "Check out the ranking",
+  "login": "Log in using your Twitter account"
+}

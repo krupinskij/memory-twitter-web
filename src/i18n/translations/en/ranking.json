@@ -1,0 +1,16 @@
+{
+  "options": "Options",
+  "level": "Level:",
+  "easy": "Easy",
+  "medium": "Medium",
+  "hard": "Hard",
+  "legendary": "Legendary",
+  "order": "Order:",
+  "clicks": "Clicks",
+  "time": "Time",
+  "players": "Players:",
+  "together": "Together",
+  "onlyme": "Only me",
+  "onlyfollowings": "Only followings",
+  "details": "Details"
+}
